@@ -1,15 +1,28 @@
 
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.io.ParseException;
+import com.vividsolutions.jts.io.WKTReader;
+import org.geoserver.gwc.GWC;
+import org.geoserver.gwc.wms.CachingWebMapService;
+import org.geotools.data.CachingFeatureSource;
+import org.geotools.data.FeatureSource;
 import org.geotools.data.ows.Layer;
 import org.geotools.data.wms.WMS1_0_0;
 import org.geotools.data.wms.WebMapServer;
 import org.geotools.data.wms.request.GetMapRequest;
 import org.geotools.data.wms.response.GetMapResponse;
+import org.geotools.geometry.jts.JTSFactoryFinder;
+import org.geotools.map.FeatureLayer;
 import org.geotools.map.MapContent;
 import org.geotools.map.WMSLayer;
 import org.geotools.ows.ServiceException;
 import org.geotools.swing.JMapFrame;
 import org.geotools.swing.wms.WMSLayerChooser;
+import org.geotools.util.ObjectCache;
+import org.geotools.util.ObjectCaches;
+import org.geowebcache.GeoWebCache;
 import org.xml.sax.SAXException;
+import sun.swing.ImageCache;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -19,12 +32,15 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Set;
 
+import com.vividsolutions.jts.geom.Polygonal;
+import com.vividsolutions.jts.geom.Polygon;
 /**
  * Created by SerP on 25.02.2016.
  */
 public class TestGeoTool extends JFrame  {
-    public static void main(String[] args) throws IOException, ServiceException {
+    public static void main(String[] args) throws IOException, ServiceException, ParseException {
         // display a data store file chooser dialog for shapefiles
         /*
         URL capabilitiesURL = WMSChooser.showChooseWMS();
@@ -35,7 +51,7 @@ public class TestGeoTool extends JFrame  {
         //testWebServer();
 
 
-        URL capabilitiesURL = new URL("http://localhost:8080/geoserver/wms?service=WMS&request=GetCapabilities");
+        URL capabilitiesURL = new URL("http://192.168.1.80:8180/geoserver/wms?service=WMS&request=GetCapabilities");
         WebMapServer wms = new WebMapServer( capabilitiesURL );
 
         List<Layer> wmsLayers = WMSLayerChooser.showSelectLayer( wms );
@@ -46,10 +62,34 @@ public class TestGeoTool extends JFrame  {
         MapContent mapcontent = new MapContent();
         mapcontent.setTitle( wms.getCapabilities().getService().getTitle() );
 
+        //ImageCache imageCache = new ImageCache();
+        //ObjectCache objectCache = new ObjectCache()
+        //ObjectCaches objectCaches = new ObjectCaches();
+
+
+        GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory( null );
+
+        /*
+        WKTReader reader = new WKTReader( geometryFactory );
+        Polygon polygon = (Polygon) reader.read("POLYGON((20 10, 30 0, 40 10, 30 20, 20 10))");
+        */
+        FeatureSource featureSource = new FeatureSource()
+        }
+        FeatureLayer featureLayer = new FeatureLayer();
+
+        //mapcontent.addLayer(Polygon);
+
         for( Layer wmsLayer : wmsLayers ){
             WMSLayer displayLayer = new WMSLayer(wms, wmsLayer );
             mapcontent.addLayer(displayLayer);
         }
+        //GeoWebCache geoWebCache = new GeoWebCache();
+        //GWC gwc = new GWC();
+        //CachingWebMapService cachingWebMapService = new CachingWebMapService();
+
+        //FeatureSource featureSource = new FeatureSource();
+        //CachingFeatureSource cachingFeatureSource = new CachingFeatureSource();
+
         // Now display the map
         JMapFrame.showMap(mapcontent);
     }
