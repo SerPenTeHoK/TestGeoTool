@@ -16,5 +16,6 @@
     <orderEntry type="library" name="GeoServerLib_Home" level="project" />
     <orderEntry type="library" name="gt-swing-14.2" level="project" />
     <orderEntry type="library" name="GeoServerLib_Work" level="project" />
+    <orderEntry type="library" name="activation-1.11" level="project" />
   </component>
 </module>
