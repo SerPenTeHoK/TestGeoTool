@@ -78,6 +78,7 @@ public class WFSExample {
         //
         Map connectionParameters = new HashMap();
         connectionParameters.put("WFSDataStoreFactory:GET_CAPABILITIES_URL", getCapabilities );
+        connectionParameters.put("WFSDataStoreFactory:WFS_STRATEGY", "geoserver" );
 
         // Step 2 - connection
         DataStore data = DataStoreFinder.getDataStore( connectionParameters );
@@ -152,7 +153,8 @@ public class WFSExample {
         */
 
         // Now display the map
-        JMapFrame.showMap(mapcontent);
+        //JMapFrame.showMap(mapcontent);
+        JMapFrameExtra.showMap(mapcontent);
 
     }
 

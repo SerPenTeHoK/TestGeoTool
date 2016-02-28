@@ -2,6 +2,8 @@
   <library name="gt-swing-14.2">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swt-14.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/miglayout-3.7-swing.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
