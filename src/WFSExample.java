@@ -56,8 +56,8 @@ public class WFSExample {
      * @param args
      */
     public static void main( String[] args ){
-        //String getCapabilities =    "http://localhost:8080/geoserver/wfs?service=WFS&request=GetCapabilities";
-        String getCapabilities = "http://192.168.1.80:8180/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0";
+        String getCapabilities =    "http://localhost:8080/geoserver/wfs?service=WFS&request=GetCapabilities&version=1.0.0";
+        //String getCapabilities = "http://192.168.1.80:8180/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0";
         if( args.length != 0 ){
             getCapabilities = args[0];
         }
@@ -85,7 +85,8 @@ public class WFSExample {
 
         // Step 3 - discouvery
         String typeNames[] = data.getTypeNames();
-        String typeName = "ForOracleWS_REGIONS2010";// typeNames[0];
+        //String typeName = "ForOracleWS_REGIONS2010";// typeNames[0];
+        String typeName = "sf_roads";
         SimpleFeatureType schema = data.getSchema( typeName );
         System.out.println( "Schema Attributes:"+schema.getAttributeCount() );
 

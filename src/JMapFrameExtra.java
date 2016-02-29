@@ -1,26 +1,17 @@
 /**
  * Created by SerP on 28.02.2016.
  */
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.geom.AffineTransform;
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Set;
-import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-import javax.swing.JToolBar;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
+
 import net.miginfocom.swing.MigLayout;
+import org.geotools.geometry.DirectPosition2D;
+import org.geotools.geometry.Envelope2D;
 import org.geotools.map.MapContent;
 import org.geotools.swing.JMapFrame;
 import org.geotools.swing.JMapPane;
@@ -32,6 +23,10 @@ import org.geotools.swing.action.ResetAction;
 import org.geotools.swing.action.ZoomInAction;
 import org.geotools.swing.action.ZoomOutAction;
 import org.geotools.swing.control.JMapStatusBar;
+import org.geotools.swing.event.MapMouseEvent;
+
+import java.awt.event.MouseEvent;
+
 
 public class JMapFrameExtra extends JFrame {
     public static final String TOOLBAR_INFO_BUTTON_NAME = "ToolbarInfoButton";
@@ -103,7 +98,9 @@ public class JMapFrameExtra extends JFrame {
             public void mousePressed(MouseEvent e) {
                 JMapFrameExtra.this.mapPane.requestFocusInWindow();
             }
+
         });
+
     }
 
     public void enableToolBar(boolean enabled) {
@@ -219,6 +216,32 @@ public class JMapFrameExtra extends JFrame {
 
             this.getContentPane().add(panel);
             this.uiSet = true;
+
+            this.mapPane.addMouseWheelListener(new MouseWheelListener() {
+                @Override
+                public void mouseWheelMoved(MouseWheelEvent e) {
+                    int mouserot = e.getWheelRotation();
+                    MapMouseEvent mme = new MapMouseEvent(mapPane, e);
+                    Rectangle paneArea = ((JComponent)mapPane).getVisibleRect();
+                    DirectPosition2D mapPos = mme.getWorldPos();
+                    double scale = mapPane.getWorldToScreenTransform().getScaleX();
+                    double newScale = 0;
+                    if (mouserot < 0) {
+                           newScale = scale * 1.5D;
+                    } else {
+                           newScale = scale / 1.5D;
+                    }
+                    try{
+                        DirectPosition2D corner = new DirectPosition2D(mapPos.getX() - 0.5D * paneArea.getWidth() / newScale, mapPos.getY() + 0.5D * paneArea.getHeight() / newScale);
+                        Envelope2D newMapArea = new Envelope2D();
+                        newMapArea.setFrameFromCenter(mapPos, corner);
+                        mapPane.setDisplayArea(newMapArea);
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+
         }
     }
 

@@ -74,6 +74,7 @@ import static java.lang.Thread.sleep;
 public class TestGeoTool extends JFrame  {
     public static void main(String[] args) throws IOException, ServiceException, ParseException, InterruptedException, FactoryException {
 
+        /*
         String getCapabilities = "http://192.168.1.80:8180/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0";
 
         Map connectionParameters = new HashMap();
@@ -115,7 +116,7 @@ public class TestGeoTool extends JFrame  {
                 ff2.sort("weg_nr", "DESC".equals("ASC") ? SortOrder.DESCENDING : SortOrder.ASCENDING)
         });
         */
-
+/*
         SimpleFeatureCollection features = source.getFeatures(query);
 
         SimpleFeatureIterator iterator = features.features();
@@ -279,7 +280,7 @@ public class TestGeoTool extends JFrame  {
         // Home
         //URL capabilitiesURL = new URL("http://192.168.1.80:8180/geoserver/wms?service=WMS&request=GetCapabilities");
         // Work
-        /*
+
         URL capabilitiesURL = new URL("http://localhost:8080/geoserver/wms?service=WMS&request=GetCapabilities");
         WebMapServer wms = new WebMapServer( capabilitiesURL );
 
@@ -297,8 +298,8 @@ public class TestGeoTool extends JFrame  {
         }
 
         // Now display the map
-        JMapFrame.showMap(mapcontent);
-        */
+        JMapFrameExtra.showMap(mapcontent);
+
 
     }
     private static void testShpFile() throws IOException {
