@@ -3,6 +3,7 @@
  */
 
 import java.awt.*;
+import java.net.URL;
 import java.util.*;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,6 +22,7 @@ import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.data.simple.SimpleFeatureSource;
 import org.geotools.data.wfs.internal.parsers.CachingGetFeatureParser;
+import org.geotools.data.wms.WebMapServer;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.factory.GeoTools;
 import org.geotools.feature.FeatureCollection;
@@ -28,9 +30,11 @@ import org.geotools.geometry.jts.JTS;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.map.FeatureLayer;
 import org.geotools.map.Layer;
+import org.geotools.map.WMSLayer;
 import org.geotools.styling.SLD;
 import org.geotools.styling.Style;
 import org.geotools.swing.JMapFrame;
+import org.geotools.swing.wms.WMSLayerChooser;
 import org.jaitools.tilecache.DiskCachedTile;
 import org.opengis.feature.Feature;
 import org.opengis.feature.Property;
@@ -48,9 +52,10 @@ import  org.geotools.map.MapContent;
 import org.geotools.data.CachingFeatureSource;
 
 import javax.media.jai.CachedTile;
+import javax.swing.*;
 
 
-public class WFSExample {
+public class WFS_WMS_Example {
     /**
      * Before running this application please install and start geoserver on your local machine.
      * @param args
@@ -170,6 +175,23 @@ public class WFSExample {
         Layer vegLayer2 = new FeatureLayer(features3, vegStyle);
 
         Layer poiLayer = new FeatureLayer(source_poi, markerStyle);
+
+
+        // WMS
+        // Home
+        URL capabilitiesURL = new URL("http://192.168.1.80:8180/geoserver/wms?service=WMS&request=GetCapabilities");
+        // Work
+        //URL capabilitiesURL = new URL("http://localhost:8080/geoserver/wms?service=WMS&request=GetCapabilities");
+        WebMapServer wms = new WebMapServer( capabilitiesURL );
+
+        List<org.geotools.data.ows.Layer> wmsLayers = WMSLayerChooser.showSelectLayer( wms );
+        if( wmsLayers == null ){
+            JOptionPane.showMessageDialog(null, "Could not connect - check url");
+            System.exit(0);
+        }
+
+        WMSLayer displayLayer = new WMSLayer(wms, wmsLayers.get(0) );
+        //mapcontent.addLayer(displayLayer);
 
         mapcontent.addLayer(allLayer);
         mapcontent.addLayer(polygonLayer);

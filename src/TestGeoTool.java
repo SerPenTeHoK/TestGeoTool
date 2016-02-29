@@ -278,10 +278,9 @@ public class TestGeoTool extends JFrame  {
 
 
         // Home
-        //URL capabilitiesURL = new URL("http://192.168.1.80:8180/geoserver/wms?service=WMS&request=GetCapabilities");
+        URL capabilitiesURL = new URL("http://192.168.1.80:8180/geoserver/wms?service=WMS&request=GetCapabilities");
         // Work
-
-        URL capabilitiesURL = new URL("http://localhost:8080/geoserver/wms?service=WMS&request=GetCapabilities");
+        //URL capabilitiesURL = new URL("http://localhost:8080/geoserver/wms?service=WMS&request=GetCapabilities");
         WebMapServer wms = new WebMapServer( capabilitiesURL );
 
         List<Layer> wmsLayers = WMSLayerChooser.showSelectLayer( wms );
