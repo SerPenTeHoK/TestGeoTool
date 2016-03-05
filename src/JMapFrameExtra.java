@@ -64,9 +64,15 @@ public class JMapFrameExtra extends JFrame {
 
     public List<Coordinate> coordinateMPointList = new ArrayList<>();
 
+    public static DataStore data;
+
     public Polygon PoligonPoint = new Polygon();
     public List<Coordinate> mpointList = new ArrayList<>();
 
+static public void setDataStore(DataStore dataIn)
+{
+    data = dataIn;
+}
 
     public static void showMap(final MapContent content) {
         if(SwingUtilities.isEventDispatchThread()) {
@@ -290,9 +296,9 @@ public class JMapFrameExtra extends JFrame {
         if(!this.uiSet) {
             this.initComponents();
         }
-
         return this.toolBar;
     }
+
 
     public static enum Tool {
         POINTER,
