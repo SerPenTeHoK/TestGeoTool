@@ -17,17 +17,22 @@ import javax.swing.ImageIcon;
 import com.vividsolutions.jts.geom.*;
 import com.vividsolutions.jts.geom.Polygon;
 import org.geotools.data.DataUtilities;
+import org.geotools.data.DefaultQuery;
 import org.geotools.data.FeatureSource;
+import org.geotools.data.Query;
 import org.geotools.data.memory.MemoryDataStore;
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.factory.GeoTools;
 import org.geotools.feature.DefaultFeatureCollection;
 import org.geotools.feature.SchemaException;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.geometry.DirectPosition2D;
+import org.geotools.geometry.jts.JTS;
 import org.geotools.geometry.jts.JTSFactoryFinder;
+import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.map.FeatureLayer;
 import org.geotools.map.Layer;
 import org.geotools.styling.*;
@@ -35,9 +40,12 @@ import org.geotools.swing.JMapPane;
 import org.geotools.swing.event.MapMouseEvent;
 import org.geotools.swing.locale.LocaleUtils;
 import org.geotools.swing.tool.CursorTool;
+import org.opengis.feature.Feature;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.FilterFactory;
+import org.opengis.filter.FilterFactory2;
+import org.opengis.filter.spatial.Intersects;
 
 public class PanTool1 extends CursorTool {
     public static final String TOOL_NAME = LocaleUtils.getValue("CursorTool", "Pan");
@@ -108,10 +116,12 @@ public class PanTool1 extends CursorTool {
             if (Extra.coordinateMPointList.size() > 4) {
                 int remLayer;
                 remLayer = ((JMapPane) this.getMapPane()).getMapContent().layers().size();
-                ((JMapPane) this.getMapPane()).getMapContent().layers().remove(remLayer - 1);
-                ((JMapPane) this.getMapPane()).getMapContent().layers().remove(remLayer - 2);
+                ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer-1));
+                ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer-2));
+                ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer-3));
                 Extra.coordinateMPointList.clear();
                 ((JMapPane) this.getMapPane()).repaint();
+                ((JMapPane) this.getMapPane()).updateUI();
             }
         }
 
@@ -168,7 +178,7 @@ public class PanTool1 extends CursorTool {
                 }
 
                 //Style style = createPointStyle();
-                Style polygonStyle = SLD.createPolygonStyle(Color.green, Color.YELLOW, (float) 0.2);
+                Style polygonStyle = SLD.createPolygonStyle(Color.green, Color.blue, (float) 0.2);
                 Layer layerPolygon = new FeatureLayer(fs, polygonStyle);
                 Style pointStyle = SLD.createPointStyle("Circle", Color.RED, Color.RED, 0.5f, 5);
                 Layer layerPoint = new FeatureLayer(fs2, pointStyle);
@@ -176,12 +186,98 @@ public class PanTool1 extends CursorTool {
                 if (Extra.coordinateMPointList.size() > 4) {
                     int remLayer;
                     remLayer = ((JMapPane) this.getMapPane()).getMapContent().layers().size();
-                    ((JMapPane) this.getMapPane()).getMapContent().layers().remove(remLayer - 1);
-                    ((JMapPane) this.getMapPane()).getMapContent().layers().remove(remLayer - 2);
+                    ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer-1));
+                    ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer-2));
+                    ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer-3));
                 }
                 ((JMapPane) this.getMapPane()).getMapContent().addLayer(layerPolygon);
                 ((JMapPane) this.getMapPane()).getMapContent().addLayer(layerPoint);
-                ((JMapPane) this.getMapPane()).repaint();
+
+                // REG_POI
+                try {
+                    String typeName = "ForOracleWS_REGIONS2010";// typeNames[0];
+                    //String typeName = "ForOracleWS_POI_OSM";
+                    //String typeName = "sf_roads";
+                    SimpleFeatureType schema = Extra.data.getSchema( typeName );
+
+                    // Step 4 - target
+                    FeatureSource<SimpleFeatureType, SimpleFeature> source = Extra.data.getFeatureSource( typeName );
+
+                    // Step 5 - query
+                    String geomName = schema.getGeometryDescriptor().getLocalName();
+                    //String strProp = schema.getDescriptor("REGION").getLocalName();
+
+                    //Envelope bbox = new Envelope( 32.036285400390625, 37.563629150390625, 54.66497802734375, 55.89157104492185 );
+
+                    FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2( GeoTools.getDefaultHints() );
+                    //Object polygon = JTS.toGeometry( bbox );
+                    Intersects filter = ff.intersects( ff.property( geomName ), ff.literal( polygon ) );
+
+                    //Query query = new DefaultQuery( typeName, filter, new String[]{ geomName, strProp } );
+                    Query query = new DefaultQuery( typeName, filter, new String[]{ geomName } );
+                    //FeatureCollection<SimpleFeatureType, SimpleFeature> features = source.getFeatures( query );
+
+                    ReferencedEnvelope bounds = new ReferencedEnvelope();
+                    //Iterator<SimpleFeature> iterator = features.iterator();
+
+                    SimpleFeatureCollection features = (SimpleFeatureCollection) source.getFeatures(query);
+                    SimpleFeatureIterator iterator = features.features();
+
+                    /*
+                    try {
+                        while( iterator.hasNext() ){
+                            Feature feature = (Feature) iterator.next();
+                            bounds.include( feature.getBounds() );
+                        }
+                    }
+                    finally {
+                        iterator.close();
+
+                    }
+
+                    SimpleFeatureIterator iterator2 = features.features();
+                    while( iterator2.hasNext() ){
+                        SimpleFeature sf = (SimpleFeature) iterator2.next();
+                        List<Object> attr = sf.getAttributes();
+                        //System.out.println(sf);
+                        //System.out.println(sf.getID());
+                    }
+                    */
+
+                    Style polygonStyleRegion =  SLD.createPolygonStyle(Color.green, Color.orange, (float) 0.5);
+                    Layer polygonLayerReg = new FeatureLayer(features, polygonStyleRegion);
+                    //Style markerStyle = SLD.createPointStyle("Circle", Color.orange, Color.green, 0.9f, 10);
+                    //Layer polygonLayerReg = new FeatureLayer(features, markerStyle);
+
+                    ((JMapPane) this.getMapPane()).getMapContent().addLayer(polygonLayerReg);
+                    /*
+                    //String  typeName = "ForOracleWS_POI_OSM";
+                    String  typeName = "ForOracleWS_REGIONS2010";
+                    FeatureSource<SimpleFeatureType, SimpleFeature> source_poi = Extra.data.getFeatureSource(typeName );
+                    SimpleFeatureType schema = Extra.data.getSchema( typeName );
+                    FeatureSource<SimpleFeatureType, SimpleFeature> source = Extra.data.getFeatureSource( typeName );
+                    // Step 5 - query
+                    String geomName = schema.getGeometryDescriptor().getLocalName();
+
+                    FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2( GeoTools.getDefaultHints() );
+                    Object polygonQ = polygon;
+                    Intersects filter = ff.intersects( ff.property( geomName ), ff.literal( polygonQ ) );
+                    Query query = new DefaultQuery( typeName, filter, new String[]{ geomName } );
+                    //FeatureCollection<SimpleFeatureType, SimpleFeature> features = source.getFeatures( query );
+                    ReferencedEnvelope bounds = new ReferencedEnvelope();
+                    SimpleFeatureCollection features = (SimpleFeatureCollection) source.getFeatures(query);
+
+                    Style markerStyle = SLD.createPointStyle("Circle", Color.orange, Color.green, 0.9f, 10);
+
+                    Layer poiLayer = new FeatureLayer(source_poi, markerStyle);
+                    ((JMapPane) this.getMapPane()).getMapContent().addLayer(poiLayer);
+                    */
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                //Extra.getMapPane().setPaintDelay(500);
+
                 /*
                 GeometryFactory gf = new GeometryFactory();
 

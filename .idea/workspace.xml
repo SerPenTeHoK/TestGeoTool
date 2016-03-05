@@ -12,7 +12,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestGeoTools/PanTool1.class" afterPath="$PROJECT_DIR$/out/production/TestGeoTools/PanTool1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestGeoTools/TestGeoTool.class" afterPath="$PROJECT_DIR$/out/production/TestGeoTools/TestGeoTool.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestGeoTools/WFSExample.class" afterPath="$PROJECT_DIR$/out/production/TestGeoTools/WFSExample.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/JMapFrameExtra.java" afterPath="$PROJECT_DIR$/src/JMapFrameExtra.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PanTool1.java" afterPath="$PROJECT_DIR$/src/PanTool1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WFS_WMS_Example.java" afterPath="$PROJECT_DIR$/src/WFS_WMS_Example.java" />
     </list>
     <ignored path="TestGeoTools.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,30 +37,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="JMapFrameExtra.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/JMapFrameExtra.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.689655">
-              <caret line="294" column="5" selection-start-line="294" selection-start-column="5" selection-end-line="294" selection-end-column="5" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="imports" expanded="true" />
-                <element signature="e#2855#2994#0" expanded="true" />
-                <element signature="e#2993#2994#0" expanded="true" />
-                <element signature="e#3901#4073#0" expanded="true" />
-                <element signature="e#4072#4073#0" expanded="true" />
-                <element signature="e#9003#10264#0" expanded="true" />
-                <element signature="e#10263#10264#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="WFS_WMS_Example.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WFS_WMS_Example.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="191" column="90" selection-start-line="191" selection-start-column="27" selection-end-line="191" selection-end-column="90" />
+            <state vertical-scroll-proportion="-4.9310346">
+              <caret line="69" column="19" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="19" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -67,78 +50,89 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PanAction1.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PanAction1.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
-              <folding>
-                <element signature="e#0#909#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-                <element signature="e#837#838#0" expanded="true" />
-                <element signature="e#905#906#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PanTool1.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PanTool1.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PanTool1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2767442">
-              <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="242" column="42" selection-start-line="242" selection-start-column="37" selection-end-line="242" selection-end-column="42" />
               <folding>
-                <element signature="e#0#20783#0" expanded="true" />
+                <element signature="e#0#26410#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#20612#20613#0" expanded="true" />
-                <element signature="e#20648#20649#0" expanded="true" />
-                <element signature="e#20681#20682#0" expanded="true" />
-                <element signature="e#20715#20716#0" expanded="true" />
-                <element signature="e#20751#20752#0" expanded="true" />
-                <element signature="e#20779#20780#0" expanded="true" />
+                <element signature="e#26239#26240#0" expanded="true" />
+                <element signature="e#26275#26276#0" expanded="true" />
+                <element signature="e#26308#26309#0" expanded="true" />
+                <element signature="e#26342#26343#0" expanded="true" />
+                <element signature="e#26378#26379#0" expanded="true" />
+                <element signature="e#26406#26407#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DefaultMapMouseEventDispatcher.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/event/DefaultMapMouseEventDispatcher.class">
+      <file leaf-file-name="JMapFrameExtra.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/JMapFrameExtra.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.592592">
-              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MapAction.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/action/MapAction.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.037037">
-              <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.33255813">
+              <caret line="270" column="32" selection-start-line="270" selection-start-column="27" selection-end-line="270" selection-end-column="32" />
               <folding>
-                <element signature="e#875#876#0" expanded="true" />
-                <element signature="e#910#911#0" expanded="true" />
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2739#2740#0" expanded="true" />
+                <element signature="e#2760#2761#0" expanded="true" />
+                <element signature="e#2963#3102#0" expanded="true" />
+                <element signature="e#3101#3102#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapLayerTable.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/MapLayerTable.class">
+      <file leaf-file-name="MapContent.class" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/gt-render-14.2.jar!/org/geotools/map/MapContent.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="24.555555">
-              <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+            <state vertical-scroll-proportion="-5.6666665">
+              <caret line="321" column="19" selection-start-line="321" selection-start-column="19" selection-end-line="321" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JMapPane.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/JMapPane.class">
+      <file leaf-file-name="FilterFactoryImpl.class" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/gt-main-14.2.jar!/org/geotools/filter/FilterFactoryImpl.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="25.892857">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+            <state vertical-scroll-proportion="-6.296296">
+              <caret line="242" column="0" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+              <folding>
+                <element signature="e#9457#9458#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AttributeExpressionImpl.class" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/gt-main-14.2.jar!/org/geotools/filter/AttributeExpressionImpl.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.851851">
+              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JTS.class" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/gt-api-14.2.jar!/org/geotools/geometry/jts/JTS.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.703704">
+              <caret line="77" column="41" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Envelope.class" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/jts-1.13.jar!/com/vividsolutions/jts/geom/Envelope.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.9259257">
+              <caret line="30" column="43" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -168,10 +162,10 @@
         <option value="$PROJECT_DIR$/src/AbstractMapPane1.java" />
         <option value="$PROJECT_DIR$/src/WFSExample.java" />
         <option value="$PROJECT_DIR$/src/TestGeoTool.java" />
-        <option value="$PROJECT_DIR$/src/WFS_WMS_Example.java" />
-        <option value="$PROJECT_DIR$/src/JMapFrameExtra.java" />
         <option value="$PROJECT_DIR$/src/PanAction1.java" />
+        <option value="$PROJECT_DIR$/src/JMapFrameExtra.java" />
         <option value="$PROJECT_DIR$/src/PanTool1.java" />
+        <option value="$PROJECT_DIR$/src/WFS_WMS_Example.java" />
       </list>
     </option>
   </component>
@@ -872,12 +866,12 @@
       <workItem from="1456769625146" duration="72000" />
       <workItem from="1456769744894" duration="329000" />
       <workItem from="1456770088164" duration="7907000" />
-      <workItem from="1457178423841" duration="22796000" />
+      <workItem from="1457178423841" duration="30589000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63396000" />
+    <option name="totallyTimeSpent" value="71189000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -954,24 +948,6 @@
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/PanTool1.java</url>
-          <line>451</line>
-          <properties />
-          <option name="timeStamp" value="72" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/PanTool1.java</url>
-          <line>440</line>
-          <properties />
-          <option name="timeStamp" value="74" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/PanTool1.java</url>
-          <line>433</line>
-          <properties />
-          <option name="timeStamp" value="75" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/gt-main-14.2.jar!/org/geotools/feature/simple/SimpleFeatureImpl.class</url>
           <line>262</line>
           <properties />
@@ -979,17 +955,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/PanTool1.java</url>
-          <line>250</line>
+          <line>264</line>
           <properties />
-          <option name="timeStamp" value="110" />
+          <option name="timeStamp" value="137" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="118" />
+      <option name="time" value="139" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="sf" language="JAVA" custom="" />
         <watch expression="paintDelay" language="JAVA" custom="" />
+        <watch expression="((JMapPane) this.getMapPane()).getMapContent().layers().size()" language="JAVA" custom="" />
+        <watch expression="Extra.coordinateMPointList.size()" language="JAVA" custom="" />
         <watch expression="((JMapPane) this.getMapPane()).getMapContent().layers().size()" language="JAVA" custom="" />
       </configuration>
     </watches-manager>
@@ -999,105 +977,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/tool/ZoomInTool.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25123152">
-          <caret line="20" column="38" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/action/ZoomInAction.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6699507">
-          <caret line="23" column="45" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/tool/InfoTool.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.229064">
-          <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/tool/ZoomOutTool.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29310346">
-          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/action/PanAction.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12561576">
-          <caret line="6" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/action/ZoomOutAction.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50246304">
-          <caret line="18" column="54" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/tool/CursorTool.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.2222223">
-          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/java/awt/Toolkit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5519631">
-          <caret line="1476" column="18" selection-start-line="1476" selection-start-column="18" selection-end-line="1476" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AbstractMapPane1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="649" column="31" selection-start-line="649" selection-start-column="31" selection-end-line="649" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#23783#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/tool/PanTool.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/gt-main-14.2.jar!/org/geotools/data/DefaultQuery.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3333335">
-          <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/WFSExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="163" column="25" selection-start-line="0" selection-start-column="0" selection-end-line="253" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/java/awt/geom/Rectangle2D.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.27334467">
-          <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/java/awt/geom/Point2D.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.012178619">
@@ -1183,14 +1062,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/java/awt/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="39.981056">
-          <caret line="1927" column="18" selection-start-line="1927" selection-start-column="18" selection-end-line="1927" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/AbstractMapPane.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.8214285">
@@ -1211,14 +1082,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.703704">
           <caret line="144" column="52" selection-start-line="144" selection-start-column="52" selection-end-line="144" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/gt-render-14.2.jar!/org/geotools/map/Layer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="23.37037">
-          <caret line="235" column="0" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1285,17 +1148,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/jts-1.13.jar!/com/vividsolutions/jts/geom/Coordinate.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.7777777">
-          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-          <folding>
-            <element signature="e#914#915#0" expanded="true" />
-            <element signature="e#952#953#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/jts-1.13.jar!/com/vividsolutions/jts/geom/GeometryFactory.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35416666">
@@ -1317,17 +1169,6 @@
         <state vertical-scroll-proportion="3.074074">
           <caret line="113" column="13" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/javax/swing/JComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3328823">
-          <caret line="1522" column="19" selection-start-line="1522" selection-start-column="19" selection-end-line="1522" selection-end-column="19" />
-          <folding>
-            <element signature="e#58095#58096#0" expanded="true" />
-            <element signature="e#58146#58147#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1358,17 +1199,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/JMapPane.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="25.892857">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/MapLayerTable.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="24.555555">
+        <state vertical-scroll-proportion="-1.5347222">
           <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
           <folding />
         </state>
@@ -1376,7 +1209,7 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/action/MapAction.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.037037">
+        <state vertical-scroll-proportion="0.3148148">
           <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
           <folding>
             <element signature="e#875#876#0" expanded="true" />
@@ -1385,27 +1218,112 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/event/DefaultMapMouseEventDispatcher.class">
+    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/JMapPane.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.592592">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        <state vertical-scroll-proportion="-1.8214285">
+          <caret line="24" column="21" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JMapFrameExtra.java">
+    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/tool/CursorTool.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.689655">
-          <caret line="294" column="5" selection-start-line="294" selection-start-column="5" selection-end-line="294" selection-end-column="5" />
+        <state vertical-scroll-proportion="-10.074074">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#2855#2994#0" expanded="true" />
-            <element signature="e#2993#2994#0" expanded="true" />
-            <element signature="e#3901#4073#0" expanded="true" />
-            <element signature="e#4072#4073#0" expanded="true" />
-            <element signature="e#9003#10264#0" expanded="true" />
-            <element signature="e#10263#10264#0" expanded="true" />
+            <element signature="e#652#653#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/jre/lib/rt.jar!/sun/awt/SunToolkit.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="335" column="0" selection-start-line="335" selection-start-column="0" selection-end-line="335" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/javax/swing/JComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4806" column="0" selection-start-line="4806" selection-start-column="0" selection-end-line="4806" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/java/awt/Container.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1491" column="0" selection-start-line="1491" selection-start-column="0" selection-end-line="1491" selection-end-column="0" />
+          <folding>
+            <element signature="e#57766#57767#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/javax/swing/UIManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1014" column="0" selection-start-line="1014" selection-start-column="0" selection-end-line="1014" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/javax/swing/JPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+          <folding>
+            <element signature="e#3308#3309#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/java/awt/Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1620" column="0" selection-start-line="1620" selection-start-column="0" selection-end-line="1620" selection-end-column="0" />
+          <folding>
+            <element signature="e#113980#113981#0" expanded="true" />
+            <element signature="e#114027#114028#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/event/DefaultMapMouseEventDispatcher.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.4814816">
+          <caret line="59" column="16" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/java/util/concurrent/CopyOnWriteArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="19.592592">
+          <caret line="582" column="19" selection-start-line="582" selection-start-column="19" selection-end-line="582" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/gt-render-14.2.jar!/org/geotools/map/Layer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.6666665">
+          <caret line="241" column="29" selection-start-line="241" selection-start-column="29" selection-end-line="241" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AbstractMapPane1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3529412">
+          <caret line="91" column="26" selection-start-line="91" selection-start-column="26" selection-end-line="91" selection-end-column="27" />
+          <folding>
+            <element signature="e#8252#8428#0" expanded="false" />
+            <element signature="e#8427#8428#0" expanded="false" />
+            <element signature="e#10181#10481#0" expanded="false" />
+            <element signature="e#10480#10481#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1415,18 +1333,76 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
           <folding>
-            <element signature="e#0#909#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#837#838#0" expanded="true" />
-            <element signature="e#905#906#0" expanded="true" />
+            <element signature="e#0#909#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#837#838#0" expanded="false" />
+            <element signature="e#905#906#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/gt-api-14.2.jar!/org/geotools/geometry/jts/JTS.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.703704">
+          <caret line="77" column="41" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/jts-1.13.jar!/com/vividsolutions/jts/geom/Coordinate.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.486111">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/jts-1.13.jar!/com/vividsolutions/jts/geom/Envelope.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.9259257">
+          <caret line="30" column="43" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/gt-opengis-14.2.jar!/org/opengis/filter/FilterFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35416666">
+          <caret line="278" column="12" selection-start-line="278" selection-start-column="12" selection-end-line="278" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/gt-render-14.2.jar!/org/geotools/map/MapContent.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.6666665">
+          <caret line="321" column="19" selection-start-line="321" selection-start-column="19" selection-end-line="321" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/gt-main-14.2.jar!/org/geotools/filter/AttributeExpressionImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.851851">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/GeoServer 2.8.2/webapps/geoserver/WEB-INF/lib/gt-main-14.2.jar!/org/geotools/filter/FilterFactoryImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.296296">
+          <caret line="242" column="0" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+          <folding>
+            <element signature="e#9457#9458#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/WFS_WMS_Example.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="191" column="90" selection-start-line="191" selection-start-column="27" selection-end-line="191" selection-end-column="90" />
+        <state vertical-scroll-proportion="-4.9310346">
+          <caret line="69" column="19" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="19" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
@@ -1436,17 +1412,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PanTool1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2767442">
-          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="242" column="42" selection-start-line="242" selection-start-column="37" selection-end-line="242" selection-end-column="42" />
           <folding>
-            <element signature="e#0#20783#0" expanded="true" />
+            <element signature="e#0#26410#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#20612#20613#0" expanded="true" />
-            <element signature="e#20648#20649#0" expanded="true" />
-            <element signature="e#20681#20682#0" expanded="true" />
-            <element signature="e#20715#20716#0" expanded="true" />
-            <element signature="e#20751#20752#0" expanded="true" />
-            <element signature="e#20779#20780#0" expanded="true" />
+            <element signature="e#26239#26240#0" expanded="true" />
+            <element signature="e#26275#26276#0" expanded="true" />
+            <element signature="e#26308#26309#0" expanded="true" />
+            <element signature="e#26342#26343#0" expanded="true" />
+            <element signature="e#26378#26379#0" expanded="true" />
+            <element signature="e#26406#26407#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JMapFrameExtra.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33255813">
+          <caret line="270" column="32" selection-start-line="270" selection-start-column="27" selection-end-line="270" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2739#2740#0" expanded="true" />
+            <element signature="e#2760#2761#0" expanded="true" />
+            <element signature="e#2963#3102#0" expanded="true" />
+            <element signature="e#3101#3102#0" expanded="true" />
           </folding>
         </state>
       </provider>

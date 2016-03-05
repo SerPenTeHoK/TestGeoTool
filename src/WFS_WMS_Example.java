@@ -123,11 +123,11 @@ public class WFS_WMS_Example {
         String typeName = "ForOracleWS_REGIONS2010";// typeNames[0];
         //String typeName = "sf_roads";
         SimpleFeatureType schema = data.getSchema( typeName );
-        System.out.println( "Schema Attributes:"+schema.getAttributeCount() );
+       // System.out.println( "Schema Attributes:"+schema.getAttributeCount() );
 
         // Step 4 - target
         FeatureSource<SimpleFeatureType, SimpleFeature> source = data.getFeatureSource( typeName );
-        System.out.println( "Metadata Bounds:"+ source.getBounds() );
+        //System.out.println( "Metadata Bounds:"+ source.getBounds() );
 
         // Step 5 - query
         String geomName = schema.getGeometryDescriptor().getLocalName();
@@ -166,8 +166,8 @@ public class WFS_WMS_Example {
         while( iterator2.hasNext() ){
             SimpleFeature sf = (SimpleFeature) iterator2.next();
             List<Object> attr = sf.getAttributes();
-            System.out.println(sf);
-            System.out.println(sf.getID());
+           // System.out.println(sf);
+          //  System.out.println(sf.getID());
         }
 
         Envelope bbox2 = new Envelope(79.036285400390625, 82.563629150390625, 53.66497802734375, 55.89157104492185 );
@@ -185,13 +185,15 @@ public class WFS_WMS_Example {
         // POI
         FeatureSource<SimpleFeatureType, SimpleFeature> source_poi = data.getFeatureSource( "ForOracleWS_POI_OSM" );
 
+        FeatureSource<SimpleFeatureType, SimpleFeature> source_reqion = data.getFeatureSource( "ForOracleWS_REGIONS2010" );
+
         MapContent mapcontent = new MapContent();
 
         Style allStyle =  SLD.createPolygonStyle(Color.green, Color.black, (float) 0.5);
         Style polygonStyle =  SLD.createPolygonStyle(Color.green, Color.YELLOW, (float) 0.5);
         Style pointStyle = SLD.createPointStyle("Circle", Color.RED, Color.RED, 0.5f, 10);
         Style vegStyle =  SLD.createPolygonStyle(Color.yellow, Color.green, (float) 0.2);
-        Style markerStyle = SLD.createPointStyle("Circle", Color.magenta, Color.magenta, 0.9f, 10);
+        Style markerStyle = SLD.createPointStyle("Circle", Color.magenta, Color.magenta, 0.1f, 10);
 
         FeatureSource<SimpleFeatureType, SimpleFeature> source_veg = data.getFeatureSource( "ForOracleWS_VEG" );
 
@@ -205,6 +207,7 @@ public class WFS_WMS_Example {
         Layer vegLayer2 = new FeatureLayer(features3, vegStyle);
 
         Layer poiLayer = new FeatureLayer(source_poi, markerStyle);
+        Layer reqionLayer = new FeatureLayer(source_reqion, polygonStyle);
 
 
         // WMS
@@ -214,6 +217,7 @@ public class WFS_WMS_Example {
         //URL capabilitiesURL = new URL("http://localhost:8080/geoserver/wms?service=WMS&request=GetCapabilities");
         WebMapServer wms = new WebMapServer( capabilitiesURL );
 
+        /*
         List<org.geotools.data.ows.Layer> wmsLayers = WMSLayerChooser.showSelectLayer( wms );
         if( wmsLayers == null ){
             JOptionPane.showMessageDialog(null, "Could not connect - check url");
@@ -222,13 +226,16 @@ public class WFS_WMS_Example {
 
         WMSLayer displayLayer = new WMSLayer(wms, wmsLayers.get(0) );
         mapcontent.addLayer(displayLayer);
+        */
 
         //mapcontent.addLayer(allLayer);
         //mapcontent.addLayer(polygonLayer);
-       // mapcontent.addLayer(pointLayer);
-       // mapcontent.addLayer(vegLayer);
-       // mapcontent.addLayer(vegLayer2);
-       // mapcontent.addLayer(poiLayer);
+        //mapcontent.addLayer(pointLayer);
+        //mapcontent.addLayer(vegLayer);
+        //mapcontent.addLayer(vegLayer2);
+        //mapcontent.addLayer(poiLayer);.
+        mapcontent.addLayer(reqionLayer);
+
 
         /*
         for( Layer wmsLayer : wmsLayers ){
@@ -276,8 +283,9 @@ public class WFS_WMS_Example {
         Style style = createPointStyle();
         Layer layer = new FeatureLayer(collection, style);
 
-        mapcontent.addLayer(layer);
+        //mapcontent.addLayer(layer);
 
+        JMapFrameExtra.setDataStore(data);
         JMapFrameExtra.showMap(mapcontent);
 
     }
@@ -297,11 +305,11 @@ public class WFS_WMS_Example {
         String typeNames[] = data.getTypeNames();
         String typeName = "ForOracleWS_REGIONS2010";//typeNames[0];
         SimpleFeatureType schema = data.getSchema( typeName );
-        System.out.println( "Schema Attributes:"+schema.getAttributeCount() );
+        //System.out.println( "Schema Attributes:"+schema.getAttributeCount() );
 
         // Step 4 - target
         FeatureSource<SimpleFeatureType, SimpleFeature> source = data.getFeatureSource( typeName );
-        System.out.println( "Metadata Bounds:"+ source.getBounds() );
+      //  System.out.println( "Metadata Bounds:"+ source.getBounds() );
 
         // CachingFeatureSource is deprecated as experimental (not yet production ready)
 
