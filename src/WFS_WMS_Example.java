@@ -10,14 +10,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.thoughtworks.xstream.core.Caching;
-import org.geotools.data.DataStore;
-import org.geotools.data.DataStoreFinder;
-import org.geotools.data.DefaultQuery;
-import org.geotools.data.DefaultTransaction;
-import org.geotools.data.FeatureSource;
-import org.geotools.data.FeatureStore;
-import org.geotools.data.Query;
-import org.geotools.data.Transaction;
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import org.geotools.data.*;
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.data.simple.SimpleFeatureSource;
@@ -25,14 +20,17 @@ import org.geotools.data.wfs.internal.parsers.CachingGetFeatureParser;
 import org.geotools.data.wms.WebMapServer;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.factory.GeoTools;
+import org.geotools.feature.DefaultFeatureCollection;
 import org.geotools.feature.FeatureCollection;
+import org.geotools.feature.SchemaException;
+import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.geometry.jts.JTS;
+import org.geotools.geometry.jts.JTSFactoryFinder;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.map.FeatureLayer;
 import org.geotools.map.Layer;
 import org.geotools.map.WMSLayer;
-import org.geotools.styling.SLD;
-import org.geotools.styling.Style;
+import org.geotools.styling.*;
 import org.geotools.swing.JMapFrame;
 import org.geotools.swing.wms.WMSLayerChooser;
 import org.jaitools.tilecache.DiskCachedTile;
@@ -49,7 +47,6 @@ import org.opengis.filter.spatial.Intersects;
 import com.vividsolutions.jts.geom.Envelope;
 
 import  org.geotools.map.MapContent;
-import org.geotools.data.CachingFeatureSource;
 
 import javax.media.jai.CachedTile;
 import javax.swing.*;
@@ -76,6 +73,39 @@ public class WFS_WMS_Example {
     public static void supressInfo(){
         org.geotools.util.logging.Logging.getLogger("org.geotools.gml").setLevel( Level.SEVERE );
         org.geotools.util.logging.Logging.getLogger("net.refractions.xml").setLevel( Level.SEVERE);
+    }
+
+
+    static StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory();
+    static FilterFactory filterFactory = CommonFactoryFinder.getFilterFactory();
+
+    private static Style createPointStyle() {
+        Graphic gr = styleFactory.createDefaultGraphic();
+
+        Mark mark = styleFactory.getCircleMark();
+
+        mark.setStroke(styleFactory.createStroke(
+                filterFactory.literal(Color.RED), filterFactory.literal(1)));
+
+        mark.setFill(styleFactory.createFill(filterFactory.literal(Color.CYAN)));
+        gr.graphicalSymbols().clear();
+        gr.graphicalSymbols().add(mark);
+        gr.setSize(filterFactory.literal(7));
+
+		/*
+		 * Setting the geometryPropertyName arg to null signals that we want to
+		 * draw the default geomettry of features
+		 */
+        PointSymbolizer sym = styleFactory.createPointSymbolizer(gr, null);
+
+        Rule rule = styleFactory.createRule();
+        rule.symbolizers().add(sym);
+        FeatureTypeStyle fts = styleFactory
+                .createFeatureTypeStyle(new Rule[] { rule });
+        Style style = styleFactory.createStyle();
+        style.featureTypeStyles().add(fts);
+
+        return style;
     }
 
     public static void dataAccess( String getCapabilities ) throws Exception {
@@ -191,14 +221,14 @@ public class WFS_WMS_Example {
         }
 
         WMSLayer displayLayer = new WMSLayer(wms, wmsLayers.get(0) );
-        //mapcontent.addLayer(displayLayer);
+        mapcontent.addLayer(displayLayer);
 
-        mapcontent.addLayer(allLayer);
-        mapcontent.addLayer(polygonLayer);
-        mapcontent.addLayer(pointLayer);
-        mapcontent.addLayer(vegLayer);
-        mapcontent.addLayer(vegLayer2);
-        mapcontent.addLayer(poiLayer);
+        //mapcontent.addLayer(allLayer);
+        //mapcontent.addLayer(polygonLayer);
+       // mapcontent.addLayer(pointLayer);
+       // mapcontent.addLayer(vegLayer);
+       // mapcontent.addLayer(vegLayer2);
+       // mapcontent.addLayer(poiLayer);
 
         /*
         for( Layer wmsLayer : wmsLayers ){
@@ -209,9 +239,50 @@ public class WFS_WMS_Example {
 
         // Now display the map
         //JMapFrame.showMap(mapcontent);
+
+
+        SimpleFeatureType TYPE = null;
+        try {
+            TYPE = DataUtilities.createType("Location",
+                    "location:Point:srid=4326," + // <- the geometry attribute:
+                            // Point type
+                            "name:String," + // <- a String attribute
+                            "number:Integer" // a number attribute
+            );
+        } catch (SchemaException e1) {
+            e1.printStackTrace();
+        }
+        // create feature collection
+        DefaultFeatureCollection collection = new DefaultFeatureCollection(
+                null, TYPE);
+        // create geometry factory
+        GeometryFactory geometryFactory = JTSFactoryFinder
+                .getGeometryFactory(null);
+        // create feature builder
+        SimpleFeatureBuilder featureBuilder = new SimpleFeatureBuilder(TYPE);
+
+        com.vividsolutions.jts.geom.Point point = geometryFactory.createPoint(new Coordinate(37.3, 55.3));//create point
+
+        //set new feature attributes in featureBuilder
+        featureBuilder.add(point);
+        featureBuilder.add("tmpPoint");
+        featureBuilder.add(1);
+        //create new feature
+        SimpleFeature feature = featureBuilder.buildFeature(null);
+        //add feature to collection
+        collection.add(feature);
+
+        mapcontent.setTitle("Quickstart");
+        Style style = createPointStyle();
+        Layer layer = new FeatureLayer(collection, style);
+
+        mapcontent.addLayer(layer);
+
         JMapFrameExtra.showMap(mapcontent);
 
     }
+
+
 
     public static void dataUpdate( String getCapabilities ) throws Exception {
         // Step 1 - connection parameters

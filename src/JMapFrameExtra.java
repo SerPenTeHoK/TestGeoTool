@@ -2,30 +2,48 @@
  * Created by SerP on 28.02.2016.
  */
 import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Polygon;
 import java.awt.event.*;
-import java.awt.geom.AffineTransform;
-import java.util.Arrays;
-import java.util.EnumSet;
-import java.util.Set;
+import java.io.IOException;
+import java.util.*;
+import javax.servlet.ServletException;
 import javax.swing.*;
 
+import com.vividsolutions.jts.geom.*;
 import net.miginfocom.swing.MigLayout;
+import org.geotools.data.*;
+import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.feature.DefaultFeatureCollection;
+import org.geotools.feature.FeatureCollection;
+import org.geotools.feature.SchemaException;
+import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.geometry.DirectPosition2D;
 import org.geotools.geometry.Envelope2D;
+import org.geotools.geometry.jts.JTSFactoryFinder;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.map.FeatureLayer;
+import org.geotools.map.Layer;
 import org.geotools.map.MapContent;
-import org.geotools.swing.JMapFrame;
+import org.geotools.styling.*;
 import org.geotools.swing.JMapPane;
 import org.geotools.swing.MapLayerTable;
 import org.geotools.swing.action.InfoAction;
 import org.geotools.swing.action.NoToolAction;
-import org.geotools.swing.action.PanAction;
 import org.geotools.swing.action.ResetAction;
 import org.geotools.swing.action.ZoomInAction;
 import org.geotools.swing.action.ZoomOutAction;
 import org.geotools.swing.control.JMapStatusBar;
 import org.geotools.swing.event.MapMouseEvent;
+import org.opengis.feature.simple.SimpleFeature;
+import org.opengis.feature.simple.SimpleFeatureType;
+import org.opengis.feature.type.FeatureType;
+import org.opengis.feature.type.Name;
+import org.opengis.filter.Filter;
+import org.opengis.filter.FilterFactory;
 
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 
 public class JMapFrameExtra extends JFrame {
@@ -43,6 +61,12 @@ public class JMapFrameExtra extends JFrame {
     private boolean showStatusBar;
     private boolean showLayerTable;
     private boolean uiSet;
+
+    public List<Coordinate> coordinateMPointList = new ArrayList<>();
+
+    public Polygon PoligonPoint = new Polygon();
+    public List<Coordinate> mpointList = new ArrayList<>();
+
 
     public static void showMap(final MapContent content) {
         if(SwingUtilities.isEventDispatchThread()) {
@@ -178,7 +202,8 @@ public class JMapFrameExtra extends JFrame {
                 }
 
                 if(this.toolSet.contains(JMapFrameExtra.Tool.PAN)) {
-                    splitPane = new JButton(new PanAction1(this.mapPane));
+                    splitPane = new JButton(new PanAction1(this.mapPane, this ));
+                    //this.mapPane.getCursorTool().
                     splitPane.setName("ToolbarPanButton");
                     this.toolBar.add(splitPane);
                     cursorToolGrp.add(splitPane);
@@ -222,8 +247,8 @@ public class JMapFrameExtra extends JFrame {
                 public void mouseWheelMoved(MouseWheelEvent e) {
                     int mouserot = e.getWheelRotation();
                     MapMouseEvent mme = new MapMouseEvent(mapPane, e);
-                    Rectangle paneArea = ((JComponent)mapPane).getVisibleRect();
                     DirectPosition2D mapPos = mme.getWorldPos();
+                    Rectangle paneArea = ((JComponent)mapPane).getVisibleRect();
                     double scale = mapPane.getWorldToScreenTransform().getScaleX();
                     double newScale = 0;
                     if (mouserot < 0) {
