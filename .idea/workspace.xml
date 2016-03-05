@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b33fd355-9f3b-4d81-8885-d8c4d40a2ed2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/JMapFrameExtra.java" afterPath="$PROJECT_DIR$/src/JMapFrameExtra.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PanAction1.java" afterPath="$PROJECT_DIR$/src/PanAction1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestGeoTools/JMapFrameExtra$1.class" afterPath="$PROJECT_DIR$/out/production/TestGeoTools/JMapFrameExtra$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestGeoTools/JMapFrameExtra$2.class" afterPath="$PROJECT_DIR$/out/production/TestGeoTools/JMapFrameExtra$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestGeoTools/JMapFrameExtra$3.class" afterPath="$PROJECT_DIR$/out/production/TestGeoTools/JMapFrameExtra$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestGeoTools/JMapFrameExtra$4.class" afterPath="$PROJECT_DIR$/out/production/TestGeoTools/JMapFrameExtra$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestGeoTools/JMapFrameExtra$Tool.class" afterPath="$PROJECT_DIR$/out/production/TestGeoTools/JMapFrameExtra$Tool.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestGeoTools/JMapFrameExtra.class" afterPath="$PROJECT_DIR$/out/production/TestGeoTools/JMapFrameExtra.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestGeoTools/PanAction1.class" afterPath="$PROJECT_DIR$/out/production/TestGeoTools/PanAction1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestGeoTools/PanTool1.class" afterPath="$PROJECT_DIR$/out/production/TestGeoTools/PanTool1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestGeoTools/TestGeoTool.class" afterPath="$PROJECT_DIR$/out/production/TestGeoTools/TestGeoTool.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestGeoTools/WFSExample.class" afterPath="$PROJECT_DIR$/out/production/TestGeoTools/WFSExample.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PanTool1.java" afterPath="$PROJECT_DIR$/src/PanTool1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WFS_WMS_Example.java" afterPath="$PROJECT_DIR$/src/WFS_WMS_Example.java" />
     </list>
     <ignored path="TestGeoTools.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,6 +54,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="WFS_WMS_Example.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/WFS_WMS_Example.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="191" column="90" selection-start-line="191" selection-start-column="27" selection-end-line="191" selection-end-column="90" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="PanAction1.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PanAction1.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -65,17 +85,17 @@
       <file leaf-file-name="PanTool1.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PanTool1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9209302">
-              <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.2767442">
+              <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
               <folding>
-                <element signature="e#0#13396#0" expanded="true" />
+                <element signature="e#0#20783#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#13225#13226#0" expanded="true" />
-                <element signature="e#13261#13262#0" expanded="true" />
-                <element signature="e#13294#13295#0" expanded="true" />
-                <element signature="e#13328#13329#0" expanded="true" />
-                <element signature="e#13364#13365#0" expanded="true" />
-                <element signature="e#13392#13393#0" expanded="true" />
+                <element signature="e#20612#20613#0" expanded="true" />
+                <element signature="e#20648#20649#0" expanded="true" />
+                <element signature="e#20681#20682#0" expanded="true" />
+                <element signature="e#20715#20716#0" expanded="true" />
+                <element signature="e#20751#20752#0" expanded="true" />
+                <element signature="e#20779#20780#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -852,12 +872,12 @@
       <workItem from="1456769625146" duration="72000" />
       <workItem from="1456769744894" duration="329000" />
       <workItem from="1456770088164" duration="7907000" />
-      <workItem from="1457178423841" duration="19817000" />
+      <workItem from="1457178423841" duration="22796000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60417000" />
+    <option name="totallyTimeSpent" value="63396000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -935,19 +955,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/PanTool1.java</url>
-          <line>300</line>
+          <line>451</line>
           <properties />
           <option name="timeStamp" value="72" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/PanTool1.java</url>
-          <line>289</line>
+          <line>440</line>
           <properties />
           <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/PanTool1.java</url>
-          <line>282</line>
+          <line>433</line>
           <properties />
           <option name="timeStamp" value="75" />
         </line-breakpoint>
@@ -957,13 +977,20 @@
           <properties />
           <option name="timeStamp" value="87" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/PanTool1.java</url>
+          <line>250</line>
+          <properties />
+          <option name="timeStamp" value="110" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="110" />
+      <option name="time" value="118" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="sf" language="JAVA" custom="" />
         <watch expression="paintDelay" language="JAVA" custom="" />
+        <watch expression="((JMapPane) this.getMapPane()).getMapContent().layers().size()" language="JAVA" custom="" />
       </configuration>
     </watches-manager>
   </component>
@@ -1057,8 +1084,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="163" column="25" selection-start-line="0" selection-start-column="0" selection-end-line="253" selection-end-column="1" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1293,17 +1320,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/WFS_WMS_Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="266" column="33" selection-start-line="266" selection-start-column="33" selection-end-line="266" selection-end-column="33" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/javax/swing/JComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3328823">
@@ -1369,16 +1385,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PanAction1.java">
+    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/event/DefaultMapMouseEventDispatcher.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#909#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#837#838#0" expanded="true" />
-            <element signature="e#905#906#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-12.592592">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1399,27 +1410,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/SomeLib/geotools-14.2/gt-swing-14.2.jar!/org/geotools/swing/event/DefaultMapMouseEventDispatcher.class">
+    <entry file="file://$PROJECT_DIR$/src/PanAction1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.592592">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#909#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#837#838#0" expanded="true" />
+            <element signature="e#905#906#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WFS_WMS_Example.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="191" column="90" selection-start-line="191" selection-start-column="27" selection-end-line="191" selection-end-column="90" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PanTool1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9209302">
-          <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.2767442">
+          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13396#0" expanded="true" />
+            <element signature="e#0#20783#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#13225#13226#0" expanded="true" />
-            <element signature="e#13261#13262#0" expanded="true" />
-            <element signature="e#13294#13295#0" expanded="true" />
-            <element signature="e#13328#13329#0" expanded="true" />
-            <element signature="e#13364#13365#0" expanded="true" />
-            <element signature="e#13392#13393#0" expanded="true" />
+            <element signature="e#20612#20613#0" expanded="true" />
+            <element signature="e#20648#20649#0" expanded="true" />
+            <element signature="e#20681#20682#0" expanded="true" />
+            <element signature="e#20715#20716#0" expanded="true" />
+            <element signature="e#20751#20752#0" expanded="true" />
+            <element signature="e#20779#20780#0" expanded="true" />
           </folding>
         </state>
       </provider>

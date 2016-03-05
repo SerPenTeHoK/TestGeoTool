@@ -45,12 +45,14 @@ public class PanTool1 extends CursorTool {
     public static final String CURSOR_IMAGE = "/org/geotools/swing/icons/mActionPan.png";
     public static final Point CURSOR_HOTSPOT = new Point(15, 15);
     public static final String ICON_IMAGE = "/org/geotools/swing/icons/mActionPan.png";
-    private Cursor cursor;
-    private Point panePos;
+    static StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory();
+    static FilterFactory filterFactory = CommonFactoryFinder.getFilterFactory();
     boolean panning;
     JMapFrameExtra Extra;
 
-    public static List<Coordinate> coordinateMPointList = new ArrayList<>();
+    //public static List<Coordinate> coordinateMPointList = new ArrayList<>();
+    private Cursor cursor;
+    private Point panePos;
 
     public PanTool1(JMapFrameExtra frameExtra) {
         this.Extra = frameExtra;
@@ -66,9 +68,6 @@ public class PanTool1 extends CursorTool {
         this.panning = false;
     }
 
-    static StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory();
-    static FilterFactory filterFactory = CommonFactoryFinder.getFilterFactory();
-
     private static Style createPointStyle() {
         Graphic gr = styleFactory.createDefaultGraphic();
 
@@ -83,7 +82,7 @@ public class PanTool1 extends CursorTool {
         gr.setSize(filterFactory.literal(7));
 
 		/*
-		 * Setting the geometryPropertyName arg to null signals that we want to
+         * Setting the geometryPropertyName arg to null signals that we want to
 		 * draw the default geomettry of features
 		 */
         PointSymbolizer sym = styleFactory.createPointSymbolizer(gr, null);
@@ -91,7 +90,7 @@ public class PanTool1 extends CursorTool {
         Rule rule = styleFactory.createRule();
         rule.symbolizers().add(sym);
         FeatureTypeStyle fts = styleFactory
-                .createFeatureTypeStyle(new Rule[] { rule });
+                .createFeatureTypeStyle(new Rule[]{rule});
         Style style = styleFactory.createStyle();
         style.featureTypeStyles().add(fts);
 
@@ -102,9 +101,160 @@ public class PanTool1 extends CursorTool {
         this.panePos = ev.getPoint();
         this.panning = true;
 
-        if(ev.isShiftDown())
-        {
+        MapMouseEvent mme = new MapMouseEvent(((JMapPane) this.getMapPane()), ev);
+        DirectPosition2D mapPos = mme.getWorldPos();
 
+        if (ev.isControlDown()) {
+            if (Extra.coordinateMPointList.size() > 4) {
+                int remLayer;
+                remLayer = ((JMapPane) this.getMapPane()).getMapContent().layers().size();
+                ((JMapPane) this.getMapPane()).getMapContent().layers().remove(remLayer - 1);
+                ((JMapPane) this.getMapPane()).getMapContent().layers().remove(remLayer - 2);
+                Extra.coordinateMPointList.clear();
+                ((JMapPane) this.getMapPane()).repaint();
+            }
+        }
+
+        if (ev.isShiftDown()) {
+            if (Extra.coordinateMPointList.size() > 1) {
+                if (Extra.coordinateMPointList.size() > 2)
+                    Extra.coordinateMPointList.remove(Extra.coordinateMPointList.size() - 1);
+                Extra.coordinateMPointList.add(new Coordinate(mapPos.getX(), mapPos.getY()));
+                Extra.coordinateMPointList.add(Extra.coordinateMPointList.get(0));
+                Coordinate[] coordinates = new Coordinate[Extra.coordinateMPointList.size()];
+                Extra.coordinateMPointList.toArray(coordinates);
+
+                GeometryFactory gf = new GeometryFactory();
+                com.vividsolutions.jts.geom.Polygon polygon = gf.createPolygon(gf
+                        .createLinearRing(coordinates), null);
+                SimpleFeatureTypeBuilder ftb = new SimpleFeatureTypeBuilder();
+                ftb.setName("test");
+                ftb.add("geom", Geometry.class);
+                SimpleFeatureType type = ftb.buildFeatureType();
+
+                SimpleFeature f3 = SimpleFeatureBuilder.build(type, new Object[]{polygon}, null);
+                MemoryDataStore ds = new MemoryDataStore();
+                try {
+                    ds.createSchema(type);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                // Полигон
+                ds.addFeatures(new SimpleFeature[]{f3});
+                FeatureSource fs = null;
+                try {
+                    fs = ds.getFeatureSource("test");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                // Координаты точки
+                MemoryDataStore ds2 = new MemoryDataStore();
+                List<SimpleFeature> simpleFeatureList = new ArrayList<>();
+                for(Coordinate coord:Extra.coordinateMPointList)
+                {
+                    com.vividsolutions.jts.geom.Point point = gf.createPoint(coord);
+                    SimpleFeature sfp = SimpleFeatureBuilder.build(type, new Object[] { point }, null);
+                    simpleFeatureList.add(sfp);
+                }
+                SimpleFeature[] simpleFeatures = new SimpleFeature[simpleFeatureList.size()];
+                simpleFeatureList.toArray(simpleFeatures);
+                ds2.addFeatures(simpleFeatures);
+                FeatureSource fs2 = null;
+                try {
+                    fs2 = ds2.getFeatureSource("test");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                //Style style = createPointStyle();
+                Style polygonStyle = SLD.createPolygonStyle(Color.green, Color.YELLOW, (float) 0.2);
+                Layer layerPolygon = new FeatureLayer(fs, polygonStyle);
+                Style pointStyle = SLD.createPointStyle("Circle", Color.RED, Color.RED, 0.5f, 5);
+                Layer layerPoint = new FeatureLayer(fs2, pointStyle);
+
+                if (Extra.coordinateMPointList.size() > 4) {
+                    int remLayer;
+                    remLayer = ((JMapPane) this.getMapPane()).getMapContent().layers().size();
+                    ((JMapPane) this.getMapPane()).getMapContent().layers().remove(remLayer - 1);
+                    ((JMapPane) this.getMapPane()).getMapContent().layers().remove(remLayer - 2);
+                }
+                ((JMapPane) this.getMapPane()).getMapContent().addLayer(layerPolygon);
+                ((JMapPane) this.getMapPane()).getMapContent().addLayer(layerPoint);
+                ((JMapPane) this.getMapPane()).repaint();
+                /*
+                GeometryFactory gf = new GeometryFactory();
+
+                com.vividsolutions.jts.geom.Polygon polygon = gf.createPolygon(gf
+                        .createLinearRing(coordinates), null);
+
+                SimpleFeatureTypeBuilder ftb = new SimpleFeatureTypeBuilder();
+                ftb.setName("test");
+                ftb.add("geom", Geometry.class);
+                SimpleFeatureType type = ftb.buildFeatureType();
+
+                SimpleFeature f3 = SimpleFeatureBuilder.build(type, new Object[] { polygon }, null);
+
+                MemoryDataStore ds = new MemoryDataStore();
+                try {
+                    ds.createSchema(type);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                ds.addFeatures(new SimpleFeature[] {  f3 });
+
+                FeatureSource fs = null;
+                try {
+                    fs = ds.getFeatureSource("test");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                //Style style = createPointStyle();
+                Style polygonStyle =  SLD.createPolygonStyle(Color.green, Color.YELLOW, (float) 0.5);
+                Layer layer = new FeatureLayer(fs, polygonStyle);
+                ((JMapPane)this.getMapPane()).getMapContent().addLayer(layer);
+*/
+                /*
+                SimpleFeatureTypeBuilder ftb = new SimpleFeatureTypeBuilder();
+                ftb.setName("test");
+                ftb.add("geom", Geometry.class);
+                SimpleFeatureType type = ftb.buildFeatureType();
+
+                GeometryFactory gf = new GeometryFactory();
+                MemoryDataStore ds = new MemoryDataStore();
+                com.vividsolutions.jts.geom.Polygon polygon = gf.createPolygon(gf
+                        .createLinearRing(coordinates), null);
+                SimpleFeature feature = SimpleFeatureBuilder.build(type, new Object[] { polygon }, null);
+
+                try {
+                    ds.createSchema(type);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                ds.addFeatures(new SimpleFeature[] {  feature });
+
+                FeatureSource fs = null;
+                try {
+                    fs = ds.getFeatureSource("test");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Style polygonStyle =  SLD.createPolygonStyle(Color.green, Color.YELLOW, (float) 0.2);
+                Layer layer = new FeatureLayer(fs, polygonStyle);
+                int remLayer;
+                remLayer = ((JMapPane)this.getMapPane()).getMapContent().layers().size();
+                if(Extra.coordinateMPointList.size() > 3)
+                    ((JMapPane)this.getMapPane()).getMapContent().layers().remove(remLayer-1);
+                ((JMapPane)this.getMapPane()).getMapContent().addLayer(layer);
+                */
+            } else {
+                Extra.coordinateMPointList.add(new Coordinate(mapPos.getX(), mapPos.getY()));
+            }
+
+            /*
             GeometryFactory gf = new GeometryFactory();
             com.vividsolutions.jts.geom.Point point = gf.createPoint(new Coordinate(10, 10));
             LineString line = gf.createLineString(new Coordinate[] {
@@ -247,6 +397,7 @@ public class PanTool1 extends CursorTool {
             remLayer = ((JMapPane)this.getMapPane()).getMapContent().layers().size();
             ((JMapPane)this.getMapPane()).getMapContent().layers().remove(remLayer-1);
             ((JMapPane)this.getMapPane()).getMapContent().addLayer(layer2);
+            */
 /*
             SimpleFeature feature = featureBuilder.buildFeature(null);
             //add feature to collection
@@ -305,11 +456,11 @@ public class PanTool1 extends CursorTool {
     }
 
     public void onMouseDragged(MapMouseEvent ev) {
-        if(this.panning) {
-            ((JMapPane)this.getMapPane()).setPaintDelay(60);
+        if (this.panning) {
+            ((JMapPane) this.getMapPane()).setPaintDelay(60);
             Point pos = ev.getPoint();
-            if(!pos.equals(this.panePos)) {
-                ((JMapPane)this.getMapPane()).moveImage(pos.x - this.panePos.x, pos.y - this.panePos.y);
+            if (!pos.equals(this.panePos)) {
+                ((JMapPane) this.getMapPane()).moveImage(pos.x - this.panePos.x, pos.y - this.panePos.y);
                 this.panePos = pos;
             }
         }
