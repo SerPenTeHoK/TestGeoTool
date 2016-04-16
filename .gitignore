@@ -89,7 +89,20 @@ hs_err_pid*
 ## Plugin-specific files:
 
 # IntelliJ
+out/production/production/TestGeoTools/*.class
+out/production/production/TestGeoTools/.class
+out/production/production/*.class
+out/production/production/.class
+*.class
+.class
 /out/
+out
+/out
+out/production
+out/production/
+out/production/*.class
+out/production/production/*.class
+out/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -103,7 +116,7 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 ### Java template
-*.class
+
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
