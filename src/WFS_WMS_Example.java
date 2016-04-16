@@ -228,13 +228,13 @@ public class WFS_WMS_Example {
         mapcontent.addLayer(displayLayer);
         */
 
-        //mapcontent.addLayer(allLayer);
+        mapcontent.addLayer(allLayer);
         //mapcontent.addLayer(polygonLayer);
         //mapcontent.addLayer(pointLayer);
         //mapcontent.addLayer(vegLayer);
         //mapcontent.addLayer(vegLayer2);
         //mapcontent.addLayer(poiLayer);.
-        mapcontent.addLayer(reqionLayer);
+        //mapcontent.addLayer(reqionLayer);
 
 
         /*
