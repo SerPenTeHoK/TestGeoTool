@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="geotools-15_beta">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/SomeLib/geotools-15_beta/gt-swing-15-beta.jar!/" />
+      <root url="jar://$PROJECT_DIR$/SomeLib/geotools-15_beta/gt-swt-15-beta.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

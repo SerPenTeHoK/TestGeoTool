@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="ForServer">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/SomeLib/geotools-15_beta/ForServer" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/SomeLib/geotools-15_beta/ForServer" recursive="false" />
+  </library>
+</component>

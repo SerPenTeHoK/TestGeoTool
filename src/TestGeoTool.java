@@ -3,9 +3,10 @@ import com.vividsolutions.jts.geom.*;
 import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.io.ParseException;
 import com.vividsolutions.jts.io.WKTReader;
-import org.geoserver.gwc.GWC;
-import org.geoserver.gwc.wms.CachingWebMapService;
-import org.geoserver.wfs.WebFeatureService;
+//import org.geoserver.gwc.GWC;
+//import org.geoserver.gwc.wms.CachingWebMapService;
+//import org.geoserver.wfs.WebFeatureService;
+
 
 import org.geotools.data.*;
 import org.geotools.data.ows.Layer;
@@ -34,7 +35,7 @@ import org.geotools.swing.JMapFrame;
 import org.geotools.swing.wms.WMSLayerChooser;
 import org.geotools.util.ObjectCache;
 import org.geotools.util.ObjectCaches;
-import org.geowebcache.GeoWebCache;
+//import org.geowebcache.GeoWebCache;
 import org.opengis.feature.Feature;
 
 import org.geotools.data.DataStoreFinder;
