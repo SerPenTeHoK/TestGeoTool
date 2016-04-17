@@ -103,13 +103,10 @@ public class WorkingExample {
         // Step 3 - discouvery
         String typeNames[] = data.getTypeNames();
         String typeName = "ForOracleWS_REGIONS2010";// typeNames[0];
-        //String typeName = "sf_roads";
         SimpleFeatureType schema = data.getSchema( typeName );
-        // System.out.println( "Schema Attributes:"+schema.getAttributeCount() );
 
         // Step 4 - target
         FeatureSource<SimpleFeatureType, SimpleFeature> source = data.getFeatureSource( typeName );
-        //System.out.println( "Metadata Bounds:"+ source.getBounds() );
 
         // Step 5 - query
         String geomName = schema.getGeometryDescriptor().getLocalName();
@@ -122,11 +119,7 @@ public class WorkingExample {
 
         Query query = new DefaultQuery( typeName, filter, new String[]{ geomName, strProp } );
 
-        ReferencedEnvelope bounds = new ReferencedEnvelope();
-
         SimpleFeatureCollection features = (SimpleFeatureCollection) source.getFeatures(query);
-        SimpleFeatureIterator iterator = features.features();
-
         SimpleFeatureIterator iterator2 = features.features();
         while( iterator2.hasNext() ){
             SimpleFeature sf = (SimpleFeature) iterator2.next();
