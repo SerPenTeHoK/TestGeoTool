@@ -47,6 +47,8 @@ import org.opengis.filter.spatial.Intersects;
 import com.vividsolutions.jts.geom.Envelope;
 
 import  org.geotools.map.MapContent;
+import resources.GeoServerParametersResource;
+import sax.ReadXMLFileSAX;
 
 import javax.media.jai.CachedTile;
 import javax.swing.*;
@@ -59,7 +61,15 @@ public class WFS_WMS_Example {
      */
     public static void main( String[] args ){
         //String getCapabilities =    "http://localhost:8080/geoserver/wfs?service=WFS&request=GetCapabilities&version=1.0.0";
-        String getCapabilities = "http://192.168.1.80:8180/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0";
+        //String getCapabilities = "http://192.168.1.80:8180/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0";
+
+        GeoServerParametersResource resource = (GeoServerParametersResource) ReadXMLFileSAX.readXML("./data/GeoServer.xdb");
+        if(true)
+        {
+            ;
+        }
+        String getCapabilities = resource.getConnection();
+
         if( args.length != 0 ){
             getCapabilities = args[0];
         }
