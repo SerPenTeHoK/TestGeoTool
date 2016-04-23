@@ -25,9 +25,13 @@ import org.opengis.filter.FilterFactory;
 import org.opengis.filter.FilterFactory2;
 import org.opengis.filter.identity.Identifier;
 import org.opengis.filter.spatial.Intersects;
+import resources.GeoServerParametersResource;
+import sax.ReadXMLFileSAX;
 
 import java.awt.*;
+import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.*;
 import java.util.logging.Level;
 
@@ -41,7 +45,21 @@ public class WorkingExample {
      */
     public static void main( String[] args ){
         //String getCapabilities =    "http://localhost:8080/geoserver/wfs?service=WFS&request=GetCapabilities&version=1.0.0";
-        String getCapabilities = "http://192.168.1.80:8180/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0";
+        //String getCapabilities = "http://192.168.1.80:8180/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0";
+        GeoServerParametersResource geoServerResource = (GeoServerParametersResource) ReadXMLFileSAX.readXML("./data/GeoServer.xdb");
+        String computername ="";
+        try {
+            computername = InetAddress.getLocalHost().getHostName();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        if(!computername.equals("SerP"))
+        {
+            geoServerResource.setHost("localhost");
+            geoServerResource.setPort("8080");
+        }
+
+        String getCapabilities = geoServerResource.getConnection();
         if( args.length != 0 ){
             getCapabilities = args[0];
         }

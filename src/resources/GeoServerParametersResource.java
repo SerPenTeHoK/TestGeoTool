@@ -5,9 +5,9 @@ package resources;
  */
 @SuppressWarnings("UnusedDeclaration")
 public class GeoServerParametersResource {
-    private final String host;
-    private final String port;
-    private final String mapSourceType;
+    private String host;
+    private String port;
+    private String mapSourceType;
 
     public GeoServerParametersResource() {
         this.host = "";
@@ -25,16 +25,28 @@ public class GeoServerParametersResource {
         return host;
     }
 
+    public void setHost(String host) {
+        this.host = host;
+    }
+
     public String getPort() {
         return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
     }
 
     public String getMapSourceType() {
         return mapSourceType;
     }
 
+    public void setMapSourceType(String mapSourceType) {
+        this.mapSourceType = mapSourceType;
+    }
+
     public String getConnection() {
-        return host + ":" + port + "/geoserver/" + mapSourceType + "?REQUEST=GetCapabilities&version=1.0.0";
+        return "http://" + host + ":" + port + "/geoserver/" + mapSourceType + "?REQUEST=GetCapabilities&version=1.0.0";
     }
 
     @Override

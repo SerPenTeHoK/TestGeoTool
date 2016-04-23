@@ -1,5 +1,5 @@
 <class name="resources.GeoServerParametersResource">
-<host>http://192.168.1.80</host>
+<host>192.168.1.80</host>
 <port>8180</port>
 <mapSourceType>wfs</mapSourceType>
 </class>
