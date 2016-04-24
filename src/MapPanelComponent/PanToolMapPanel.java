@@ -95,6 +95,8 @@ public class PanToolMapPanel extends CursorTool {
     }
 
     public void onMousePressed(MapMouseEvent ev) {
+        // ToDo переделать трындец со слоями
+
         this.panePos = ev.getPoint();
         this.panning = true;
 
@@ -128,7 +130,7 @@ public class PanToolMapPanel extends CursorTool {
                 com.vividsolutions.jts.geom.Polygon polygon = gf.createPolygon(gf
                         .createLinearRing(coordinates), null);
                 SimpleFeatureTypeBuilder ftb = new SimpleFeatureTypeBuilder();
-                ftb.setName("test");
+                ftb.setName("Полигон");
                 ftb.add("geom", Geometry.class);
                 SimpleFeatureType type = ftb.buildFeatureType();
 
@@ -143,10 +145,16 @@ public class PanToolMapPanel extends CursorTool {
                 ds.addFeatures(new SimpleFeature[]{f3});
                 FeatureSource fs = null;
                 try {
-                    fs = ds.getFeatureSource("test");
+                    fs = ds.getFeatureSource("Полигон");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                // Слой для точке
+                SimpleFeatureTypeBuilder ftbPoint = new SimpleFeatureTypeBuilder();
+                ftbPoint.setName("Точки");
+                ftbPoint.add("geom", Geometry.class);
+                SimpleFeatureType typePoint = ftbPoint.buildFeatureType();
 
                 // Координаты точки
                 MemoryDataStore ds2 = new MemoryDataStore();
@@ -154,7 +162,7 @@ public class PanToolMapPanel extends CursorTool {
                 for(Coordinate coord:Extra.coordinateMPointList)
                 {
                     com.vividsolutions.jts.geom.Point point = gf.createPoint(coord);
-                    SimpleFeature sfp = SimpleFeatureBuilder.build(type, new Object[] { point }, null);
+                    SimpleFeature sfp = SimpleFeatureBuilder.build(typePoint, new Object[] { point }, null);
                     simpleFeatureList.add(sfp);
                 }
                 SimpleFeature[] simpleFeatures = new SimpleFeature[simpleFeatureList.size()];
@@ -162,7 +170,7 @@ public class PanToolMapPanel extends CursorTool {
                 ds2.addFeatures(simpleFeatures);
                 FeatureSource fs2 = null;
                 try {
-                    fs2 = ds2.getFeatureSource("test");
+                    fs2 = ds2.getFeatureSource("Точки");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -329,7 +337,7 @@ public class PanToolMapPanel extends CursorTool {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-// ЧТО ЭТО?
+// ЧТО ЭТО я делал?
                 try {
                     MemoryDataStore mds3 = (MemoryDataStore) source.getDataStore();
                     FeatureSource fs3 = null;

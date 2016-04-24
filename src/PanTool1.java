@@ -136,7 +136,7 @@ public class PanTool1 extends CursorTool {
                 com.vividsolutions.jts.geom.Polygon polygon = gf.createPolygon(gf
                         .createLinearRing(coordinates), null);
                 SimpleFeatureTypeBuilder ftb = new SimpleFeatureTypeBuilder();
-                ftb.setName("test");
+                ftb.setName("Полигон");
                 ftb.add("geom", Geometry.class);
                 SimpleFeatureType type = ftb.buildFeatureType();
 
@@ -151,7 +151,7 @@ public class PanTool1 extends CursorTool {
                 ds.addFeatures(new SimpleFeature[]{f3});
                 FeatureSource fs = null;
                 try {
-                    fs = ds.getFeatureSource("test");
+                    fs = ds.getFeatureSource("Полигон");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -170,7 +170,7 @@ public class PanTool1 extends CursorTool {
                 ds2.addFeatures(simpleFeatures);
                 FeatureSource fs2 = null;
                 try {
-                    fs2 = ds2.getFeatureSource("test");
+                    fs2 = ds2.getFeatureSource("Точки");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

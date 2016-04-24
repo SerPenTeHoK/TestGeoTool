@@ -1,6 +1,7 @@
 package MapPanelComponent;
 
 import com.vividsolutions.jts.geom.*;
+import net.miginfocom.swing.MigLayout;
 import org.geotools.data.*;
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.data.simple.SimpleFeatureIterator;
@@ -65,10 +66,9 @@ public class MapPanelTest {
         frame = new JFrame("MapPanelTest");
         frame.setContentPane(new MapPanelTest().GL_panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.setSize(600, 600);
         frame.pack();
         frame.setSize(600, 600);
-        frame.resize(600, 600);
+        //frame.resize(600, 600);
         frame.repaint();
         frame.setVisible(true);
     }
@@ -92,16 +92,13 @@ public class MapPanelTest {
 
         panel_Work = new JPanel();
         panel_Work.setSize(GL_panel.getWidth(), GL_panel.getHeight());
-        GL_panel.add(panel_Work, BorderLayout.CENTER);
-        panel_Work.setLayout(new GridLayout(1, 1));
+        GL_panel.add(panel_Work, BorderLayout.WEST);
+        //panel_Work.setLayout(new GridLayout(1, 1));
+        panel_Work.setLayout(new MigLayout());
 
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //mapControl = new MapControlGeoServer(imagePanel);
-                //mapControl.run();
-                //geoServerMapPanel
-
                 GeoServerParametersResource geoServerResource = (GeoServerParametersResource) ReadXMLFileSAX.readXML("./data/GeoServer.xdb");
                 String computername = "";
                 try {
@@ -132,7 +129,7 @@ public class MapPanelTest {
 
                     // Step 4 - target
                     FeatureSource<SimpleFeatureType, SimpleFeature> source = data.getFeatureSource( typeName );
-
+                    /*
                     // Step 5 - query
                     String geomName = schema.getGeometryDescriptor().getLocalName();
                     String strProp = schema.getDescriptor("REGION").getLocalName();
@@ -157,34 +154,13 @@ public class MapPanelTest {
                     FilterFactory2 ff2 = CommonFactoryFinder.getFilterFactory2( GeoTools.getDefaultHints() );
                     Object polygon2 = JTS.toGeometry( bbox2 );
                     Intersects filter2 = ff.intersects( ff.property( geomName ), ff.literal( polygon2 ) );
-
-                    // POI
-                    FeatureSource<SimpleFeatureType, SimpleFeature> source_poi = data.getFeatureSource( "ForOracleWS_POI_OSM" );
-
-                    FeatureSource<SimpleFeatureType, SimpleFeature> source_reqion = data.getFeatureSource( "ForOracleWS_REGIONS2010" );
-
+                    */
                     MapContent mapcontent = new MapContent();
 
                     Style allStyle =  SLD.createPolygonStyle(Color.green, Color.black, (float) 0.5);
-                    Style polygonStyle =  SLD.createPolygonStyle(Color.green, Color.YELLOW, (float) 0.5);
-                    Style pointStyle = SLD.createPointStyle("Circle", Color.RED, Color.RED, 0.5f, 10);
-                    Style markerStyle = SLD.createPointStyle("Circle", Color.magenta, Color.magenta, 0.1f, 10);
-
 
                     CachingFeatureSource cache = new CachingFeatureSource(source);
                     Layer allLayer = new FeatureLayer(cache, allStyle);
-                    Layer polygonLayer = new FeatureLayer(features, polygonStyle);
-                    Layer pointLayer = new FeatureLayer(features, pointStyle);//mapcontent.addLayer(allLayer);
-
-                    Layer poiLayer = new FeatureLayer(source_poi, markerStyle);
-                    Layer reqionLayer = new FeatureLayer(source_reqion, polygonStyle);
-
-                    // WMS
-                    // Home
-                    URL capabilitiesURL = new URL("http://192.168.1.80:8180/geoserver/wms?service=WMS&request=GetCapabilities");
-                    // Work
-                    //URL capabilitiesURL = new URL("http://localhost:8080/geoserver/wms?service=WMS&request=GetCapabilities");
-                    WebMapServer wms = new WebMapServer( capabilitiesURL );
 
                     mapcontent.addLayer(allLayer);
 
@@ -226,43 +202,32 @@ public class MapPanelTest {
                     //geoServerMapPanel.setDataStore(data);
                     //geoServerMapPanel.showMap(mapcontent);
 
+                    if (geoServerMapPanel != null)
+                    {
+                        panel_Work.remove(geoServerMapPanel);
+                        geoServerMapPanel = null;
+                        panel_Work.repaint();
+                    }
+
                     geoServerMapPanel = new GeoServerMapPanel(mapcontent);
                     panel_Work.add(geoServerMapPanel);
-                    geoServerMapPanel.showMap(mapcontent);
-                    geoServerMapPanel.repaint();
+                    //geoServerMapPanel.showMap(mapcontent);
+                    //geoServerMapPanel.repaint();
                     geoServerMapPanel.enableToolBar(true);
+                    geoServerMapPanel.enableStatusBar(true);
+                    geoServerMapPanel.enableLayerTable(true);
                     geoServerMapPanel.setVisible(true);
                     geoServerMapPanel.mapPane.setVisible(true);
-                    panel_Work.setSize(500, 500);
-                    geoServerMapPanel.setSize(500, 500);
-                    geoServerMapPanel.mapPane.setSize(500, 500);
-
-                    //geoServerMapPanel.setMinimumSize(new Dimension(700, 700));
-
-                    //geoServerMapPanel.setMinimumSize(new Dimension(500, 500));
-                    //button5 = new JButton("Супер");
-                    //geoServerMapPanel.add(button5);
-                    /*
-                    panel_Work.add(geoServerMapPanel);
-                    panel_Work.setSize(500, 500);
-                    geoServerMapPanel.setSize(500, 500);
-                    geoServerMapPanel.repaint();
-                    geoServerMapPanel.setVisible(true);
-                    geoServerMapPanel.showMap(mapcontent);
-                    geoServerMapPanel.mapPane.setVisible(true);
-                    geoServerMapPanel.mapPane.setSize(500, 500);
-                    geoServerMapPanel.setSize(500, 500);
-                    panel_Work.setSize(500, 500);
-                    geoServerMapPanel.setSize(500, 500);
-                    geoServerMapPanel.repaint();
-                    panel_Work.repaint();
                     geoServerMapPanel.mapPane.repaint();
-                    */
-
+                    geoServerMapPanel.repaint();
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
+                panel_Work.repaint();
                 frame.repaint();
+                // ToDo поправить бред
+                frame.resize(999, 600);
+                frame.resize(1000, 600);
             }
         });
 

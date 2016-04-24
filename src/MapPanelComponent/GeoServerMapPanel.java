@@ -7,7 +7,6 @@ import org.geotools.geometry.DirectPosition2D;
 import org.geotools.geometry.Envelope2D;
 import org.geotools.map.MapContent;
 import org.geotools.swing.JMapPane;
-import org.geotools.swing.MapLayerTable;
 import org.geotools.swing.action.*;
 import org.geotools.swing.control.JMapStatusBar;
 import org.geotools.swing.event.MapMouseEvent;
@@ -49,11 +48,6 @@ public class GeoServerMapPanel extends JPanel {
     public Polygon PoligonPoint = new Polygon();
     public java.util.List<Coordinate> mpointList = new ArrayList<>();
 
-
-    private JButton button5;
-    private JButton button6;
-    private JButton bSplit;
-
     public GeoServerMapPanel() {
         this((MapContent)null);
     }
@@ -71,45 +65,13 @@ public class GeoServerMapPanel extends JPanel {
         this.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
 
         /*
-        button5 = new JButton("Супер5");
-        this.mapPane.add(button5);
-
-
-        button6 = new JButton("Супе6");
-        this.add(button6);
-        */
-        this.mapPane.setSize(400, 400);
-
-        this.addComponentListener(new ComponentListener() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                GeoServerMapPanel.super.resize(600, 500);
-                GeoServerMapPanel.getMapPane().resize(300, 300);
-            }
-
-            @Override
-            public void componentMoved(ComponentEvent e) {
-
-            }
-
-            @Override
-            public void componentShown(ComponentEvent e) {
-
-            }
-
-            @Override
-            public void componentHidden(ComponentEvent e) {
-
-            }
-        });
-
-        /*
         this.addWindowFocusListener(new WindowAdapter() {
             public void windowGainedFocus(WindowEvent e) {
                 GeoServerMapPanel.this.mapPane.requestFocusInWindow();
             }
         });
         */
+
         this.mapPane.addFocusListener(new FocusAdapter() {
             public void focusGained(FocusEvent e) {
                 GeoServerMapPanel.this.mapPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -205,24 +167,19 @@ public class GeoServerMapPanel extends JPanel {
                 panel.add(this.toolBar, "grow");
                 this.toolBar.repaint();
             }
-            this.showLayerTable = true;
+            this.mapPane.setPreferredSize(new Dimension(700, 400));
             if(this.showLayerTable) {
                 this.mapLayerTable = new MapLayerTable(this.mapPane);
-                this.mapLayerTable.setPreferredSize(new Dimension(200, -1));//-1));
+                this.mapLayerTable.setPreferredSize(new Dimension(200, -1));
                 JSplitPane splitPane1 = new JSplitPane(1, false, this.mapLayerTable, this.mapPane);
                 panel.add(splitPane1, "grow");
             } else {
                 panel.add(this.mapPane, "grow");
             }
-
-            this.showStatusBar = true;
             if(this.showStatusBar) {
                 panel.add(JMapStatusBar.createDefaultStatusBar(this.mapPane), "grow");
             }
-            panel.setSize(500, 500);
-
             this.add(panel);
-            this.setSize(600, 600);
             this.uiSet = true;
 
             this.mapPane.addMouseWheelListener(new MouseWheelListener() {
@@ -291,8 +248,6 @@ public class GeoServerMapPanel extends JPanel {
     }
 
     public void showMap(final MapContent content) {
-
-
         /*
         if(SwingUtilities.isEventDispatchThread()) {
             doShowMap(content);
