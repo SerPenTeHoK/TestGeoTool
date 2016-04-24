@@ -25,6 +25,7 @@ import org.geotools.data.simple.SimpleFeatureSource;
 import org.geotools.data.simple.SimpleFeatureStore;
 import org.geotools.data.wfs.WFSDataStore;
 import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.factory.GeoTools;
 import org.geotools.feature.FeatureCollection;
 import org.geotools.feature.FeatureIterator;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
@@ -40,6 +41,8 @@ import org.geotools.swing.tool.CursorTool;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.FilterFactory;
+import org.opengis.filter.FilterFactory2;
+import org.opengis.filter.spatial.Intersects;
 
 public class PanTool1 extends CursorTool {
     public static final String TOOL_NAME = LocaleUtils.getValue("CursorTool", "Pan");
@@ -273,8 +276,9 @@ public class PanTool1 extends CursorTool {
                     finally {
                         simpleFeatureIterator.close();
                     }
-                    simpleFeatureCollection.toString();
 
+                    // Вставка точке напрямую
+                    /*
                     if (source instanceof SimpleFeatureStore) {
                         SimpleFeatureStore featureStore = (SimpleFeatureStore) source;
                         MemoryDataStore mds = (MemoryDataStore) source.getDataStore();
@@ -287,7 +291,11 @@ public class PanTool1 extends CursorTool {
                         SimpleFeatureCollection collection = new ListFeatureCollection(type, simpleFeatureList); // полность обновлять содержание, но не переделывать слой
                         featureStore.setTransaction(transaction);
                         try {
-                            //featureStore.addFeatures(collection);
+                            FilterFactory2 fff = CommonFactoryFinder.getFilterFactory2( GeoTools.getDefaultHints() );
+                            //Object polygon = JTS.toGeometry( bbox );
+                            Intersects filter = fff.intersects( fff.property( "test" ), fff.literal( polygon ) );
+                            featureStore.removeFeatures(filter);
+                            featureStore.addFeatures(collection);
                             transaction.commit();
                         } catch (Exception problem) {
                             problem.printStackTrace();
@@ -299,6 +307,7 @@ public class PanTool1 extends CursorTool {
                     else {
                         System.out.println(" does not support read/write access");
                     }
+                    */
                     /*
                            if (featureSource instanceof SimpleFeatureStore) {
                             SimpleFeatureStore featureStore = (SimpleFeatureStore) featureSource;
