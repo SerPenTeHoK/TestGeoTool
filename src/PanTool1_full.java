@@ -1,7 +1,22 @@
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
+/**
+ * Created by SerP on 28.02.2016.
+ */
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+
+import java.awt.*;
+import java.awt.Point;
+import java.io.IOException;
+import java.util.*;
+import java.util.List;
+import javax.swing.ImageIcon;
+
+import com.vividsolutions.jts.geom.*;
 import com.vividsolutions.jts.geom.Polygon;
+import org.geotools.data.DataUtilities;
 import org.geotools.data.DefaultQuery;
 import org.geotools.data.FeatureSource;
 import org.geotools.data.Query;
@@ -10,9 +25,13 @@ import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.factory.GeoTools;
+import org.geotools.feature.DefaultFeatureCollection;
+import org.geotools.feature.SchemaException;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.geometry.DirectPosition2D;
+import org.geotools.geometry.jts.JTS;
+import org.geotools.geometry.jts.JTSFactoryFinder;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.map.FeatureLayer;
 import org.geotools.map.Layer;
@@ -21,19 +40,14 @@ import org.geotools.swing.JMapPane;
 import org.geotools.swing.event.MapMouseEvent;
 import org.geotools.swing.locale.LocaleUtils;
 import org.geotools.swing.tool.CursorTool;
+import org.opengis.feature.Feature;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.FilterFactory;
 import org.opengis.filter.FilterFactory2;
 import org.opengis.filter.spatial.Intersects;
 
-import javax.swing.*;
-import java.awt.*;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-public class PanToolPanel extends CursorTool {
+public class PanTool1_full extends CursorTool {
     public static final String TOOL_NAME = LocaleUtils.getValue("CursorTool", "Pan");
     public static final String TOOL_TIP = LocaleUtils.getValue("CursorTool", "PanTooltip");
     public static final String CURSOR_IMAGE = "/org/geotools/swing/icons/mActionPan.png";
@@ -42,21 +56,20 @@ public class PanToolPanel extends CursorTool {
     static StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory();
     static FilterFactory filterFactory = CommonFactoryFinder.getFilterFactory();
     boolean panning;
-    JMapPanel Extra;
+    JMapFrameExtra Extra;
 
     //public static List<Coordinate> coordinateMPointList = new ArrayList<>();
     private Cursor cursor;
     private Point panePos;
 
-    public PanToolPanel(JMapPanel frameExtra) {
+    public PanTool1_full(JMapFrameExtra frameExtra) {
         this.Extra = frameExtra;
         Toolkit tk = Toolkit.getDefaultToolkit();
         ImageIcon imgIcon = new ImageIcon(this.getClass().getResource("/org/geotools/swing/icons/mActionPan.png"));
         this.cursor = tk.createCustomCursor(imgIcon.getImage(), CURSOR_HOTSPOT, TOOL_NAME);
         this.panning = false;
     }
-
-    public PanToolPanel() {
+    public PanTool1_full() {
         Toolkit tk = Toolkit.getDefaultToolkit();
         ImageIcon imgIcon = new ImageIcon(this.getClass().getResource("/org/geotools/swing/icons/mActionPan.png"));
         this.cursor = tk.createCustomCursor(imgIcon.getImage(), CURSOR_HOTSPOT, TOOL_NAME);
@@ -103,9 +116,9 @@ public class PanToolPanel extends CursorTool {
             if (Extra.coordinateMPointList.size() > 4) {
                 int remLayer;
                 remLayer = ((JMapPane) this.getMapPane()).getMapContent().layers().size();
-                ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer - 1));
-                ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer - 2));
-                ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer - 3));
+                ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer-1));
+                ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer-2));
+                ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer-3));
                 Extra.coordinateMPointList.clear();
                 ((JMapPane) this.getMapPane()).repaint();
                 ((JMapPane) this.getMapPane()).updateUI();
@@ -122,7 +135,7 @@ public class PanToolPanel extends CursorTool {
                 Extra.coordinateMPointList.toArray(coordinates);
 
                 GeometryFactory gf = new GeometryFactory();
-                Polygon polygon = gf.createPolygon(gf
+                com.vividsolutions.jts.geom.Polygon polygon = gf.createPolygon(gf
                         .createLinearRing(coordinates), null);
                 SimpleFeatureTypeBuilder ftb = new SimpleFeatureTypeBuilder();
                 ftb.setName("test");
@@ -148,9 +161,10 @@ public class PanToolPanel extends CursorTool {
                 // Координаты точки
                 MemoryDataStore ds2 = new MemoryDataStore();
                 List<SimpleFeature> simpleFeatureList = new ArrayList<>();
-                for (Coordinate coord : Extra.coordinateMPointList) {
+                for(Coordinate coord:Extra.coordinateMPointList)
+                {
                     com.vividsolutions.jts.geom.Point point = gf.createPoint(coord);
-                    SimpleFeature sfp = SimpleFeatureBuilder.build(type, new Object[]{point}, null);
+                    SimpleFeature sfp = SimpleFeatureBuilder.build(type, new Object[] { point }, null);
                     simpleFeatureList.add(sfp);
                 }
                 SimpleFeature[] simpleFeatures = new SimpleFeature[simpleFeatureList.size()];
@@ -172,9 +186,9 @@ public class PanToolPanel extends CursorTool {
                 if (Extra.coordinateMPointList.size() > 4) {
                     int remLayer;
                     remLayer = ((JMapPane) this.getMapPane()).getMapContent().layers().size();
-                    ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer - 1));
-                    ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer - 2));
-                    ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer - 3));
+                    ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer-1));
+                    ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer-2));
+                    ((JMapPane) this.getMapPane()).getMapContent().removeLayer(((JMapPane) this.getMapPane()).getMapContent().layers().get(remLayer-3));
                 }
                 ((JMapPane) this.getMapPane()).getMapContent().addLayer(layerPolygon);
                 ((JMapPane) this.getMapPane()).getMapContent().addLayer(layerPoint);
@@ -184,10 +198,10 @@ public class PanToolPanel extends CursorTool {
                     String typeName = "ForOracleWS_REGIONS2010";// typeNames[0];
                     //String typeName = "ForOracleWS_POI_OSM";
                     //String typeName = "sf_roads";
-                    SimpleFeatureType schema = Extra.data.getSchema(typeName);
+                    SimpleFeatureType schema = Extra.data.getSchema( typeName );
 
                     // Step 4 - target
-                    FeatureSource<SimpleFeatureType, SimpleFeature> source = Extra.data.getFeatureSource(typeName);
+                    FeatureSource<SimpleFeatureType, SimpleFeature> source = Extra.data.getFeatureSource( typeName );
 
                     // Step 5 - query
                     String geomName = schema.getGeometryDescriptor().getLocalName();
@@ -195,12 +209,12 @@ public class PanToolPanel extends CursorTool {
 
                     //Envelope bbox = new Envelope( 32.036285400390625, 37.563629150390625, 54.66497802734375, 55.89157104492185 );
 
-                    FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2(GeoTools.getDefaultHints());
+                    FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2( GeoTools.getDefaultHints() );
                     //Object polygon = JTS.toGeometry( bbox );
-                    Intersects filter = ff.intersects(ff.property(geomName), ff.literal(polygon));
+                    Intersects filter = ff.intersects( ff.property( geomName ), ff.literal( polygon ) );
 
                     //Query query = new DefaultQuery( typeName, filter, new String[]{ geomName, strProp } );
-                    Query query = new DefaultQuery(typeName, filter, new String[]{geomName});
+                    Query query = new DefaultQuery( typeName, filter, new String[]{ geomName } );
                     //FeatureCollection<SimpleFeatureType, SimpleFeature> features = source.getFeatures( query );
 
                     ReferencedEnvelope bounds = new ReferencedEnvelope();
@@ -230,7 +244,7 @@ public class PanToolPanel extends CursorTool {
                     }
                     */
 
-                    Style polygonStyleRegion = SLD.createPolygonStyle(Color.green, Color.orange, (float) 0.5);
+                    Style polygonStyleRegion =  SLD.createPolygonStyle(Color.green, Color.orange, (float) 0.5);
                     Layer polygonLayerReg = new FeatureLayer(features, polygonStyleRegion);
                     //Style markerStyle = SLD.createPointStyle("Circle", Color.orange, Color.green, 0.9f, 10);
                     //Layer polygonLayerReg = new FeatureLayer(features, markerStyle);
