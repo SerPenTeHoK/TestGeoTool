@@ -69,7 +69,7 @@ public class JMapFrameExtra extends JFrame {
     public Polygon PoligonPoint = new Polygon();
     public List<Coordinate> mpointList = new ArrayList<>();
 
-static public void setDataStore(DataStore dataIn)
+   static public void setDataStore(DataStore dataIn)
 {
     data = dataIn;
 }

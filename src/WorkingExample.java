@@ -47,7 +47,7 @@ public class WorkingExample {
         //String getCapabilities =    "http://localhost:8080/geoserver/wfs?service=WFS&request=GetCapabilities&version=1.0.0";
         //String getCapabilities = "http://192.168.1.80:8180/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0";
         GeoServerParametersResource geoServerResource = (GeoServerParametersResource) ReadXMLFileSAX.readXML("./data/GeoServer.xdb");
-        String computername ="";
+        String computername = "";
         try {
             computername = InetAddress.getLocalHost().getHostName();
         } catch (UnknownHostException e) {
