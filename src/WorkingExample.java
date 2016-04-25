@@ -40,8 +40,8 @@ public class WorkingExample {
      * @param args
      */
     public static void main( String[] args ){
-        //String getCapabilities =    "http://localhost:8080/geoserver/wfs?service=WFS&request=GetCapabilities&version=1.0.0";
-        String getCapabilities = "http://192.168.1.80:8180/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0";
+        String getCapabilities =    "http://localhost:8080/geoserver/wfs?service=WFS&request=GetCapabilities&version=1.0.0";
+        //String getCapabilities = "http://192.168.1.80:8180/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0";
         if( args.length != 0 ){
             getCapabilities = args[0];
         }
@@ -168,9 +168,9 @@ public class WorkingExample {
 
         // WMS
         // Home
-        URL capabilitiesURL = new URL("http://192.168.1.80:8180/geoserver/wms?service=WMS&request=GetCapabilities");
+        //URL capabilitiesURL = new URL("http://192.168.1.80:8180/geoserver/wms?service=WMS&request=GetCapabilities");
         // Work
-        //URL capabilitiesURL = new URL("http://localhost:8080/geoserver/wms?service=WMS&request=GetCapabilities");
+        URL capabilitiesURL = new URL("http://localhost:8080/geoserver/wms?service=WMS&request=GetCapabilities");
         WebMapServer wms = new WebMapServer( capabilitiesURL );
 
         mapcontent.addLayer(allLayer);

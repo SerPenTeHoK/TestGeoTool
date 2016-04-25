@@ -62,9 +62,14 @@ public class AirsMapComponent {
             supportedFormat.add(format);
         }
     }
-
+/*
     AirsMapComponent() {
         this("http://192.168.1.80:8180/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0");
+    }
+    */
+
+    AirsMapComponent() {
+        this("http://localhost:8080/geoserver/wfs?service=WFS&request=GetCapabilities&version=1.0.0");
     }
 
     AirsMapComponent(String strGeoServerUrl) {

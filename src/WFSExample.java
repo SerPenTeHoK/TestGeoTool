@@ -56,8 +56,8 @@ public class WFSExample {
      * @param args
      */
     public static void main( String[] args ){
-        //String getCapabilities =    "http://localhost:8080/geoserver/wfs?service=WFS&request=GetCapabilities&version=1.0.0";
-        String getCapabilities = "http://192.168.1.80:8180/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0";
+        String getCapabilities =    "http://localhost:8080/geoserver/wfs?service=WFS&request=GetCapabilities&version=1.0.0";
+        //String getCapabilities = "http://192.168.1.80:8180/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0";
         if( args.length != 0 ){
             getCapabilities = args[0];
         }
