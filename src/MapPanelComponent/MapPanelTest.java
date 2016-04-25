@@ -3,6 +3,7 @@ package MapPanelComponent;
 import com.vividsolutions.jts.geom.*;
 import net.miginfocom.swing.MigLayout;
 import org.geotools.data.*;
+import org.geotools.data.memory.MemoryDataStore;
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.data.wms.WebMapServer;
@@ -11,12 +12,14 @@ import org.geotools.factory.GeoTools;
 import org.geotools.feature.DefaultFeatureCollection;
 import org.geotools.feature.SchemaException;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
+import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.geometry.jts.JTS;
 import org.geotools.geometry.jts.JTSFactoryFinder;
 import org.geotools.map.FeatureLayer;
 import org.geotools.map.Layer;
 import org.geotools.map.MapContent;
 import org.geotools.styling.*;
+import org.geotools.swing.JMapPane;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.FilterFactory2;
@@ -31,11 +34,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 
 import static org.geotools.swt.utils.Utils.filterFactory;
@@ -83,11 +86,11 @@ public class MapPanelTest {
         button1 = new JButton();
         button1.setText("Load map");
         panel_menu.add(button1);
-        button2 = new JButton("Resize");
+        button2 = new JButton("Добавить БС");
         panel_menu.add(button2);
-        button3 = new JButton("Disable");
+        button3 = new JButton("Тест2");
         panel_menu.add(button3);
-        button4 = new JButton("Точка далеко");
+        button4 = new JButton("Тест3");
         panel_menu.add(button4);
 
         panel_Work = new JPanel();
@@ -109,7 +112,7 @@ public class MapPanelTest {
                 if(!computername.equals("SerP"))
                 {
                     geoServerResource.setHost("localhost");
-                    geoServerResource.setPort("8080");
+                    geoServerResource.setPort("8180");
                 }
 
                 String getCapabilities = geoServerResource.getConnection();
@@ -167,7 +170,7 @@ public class MapPanelTest {
                     SimpleFeatureType TYPE = null;
                     try {
                         TYPE = DataUtilities.createType("Location",
-                                "location:Point:srid=4326," + // <- the geometry attribute:
+                                "location:Point:srid=4200," + // <- the geometry attribute:
                                         // Point type
                                         "name:String," + // <- a String attribute
                                         "number:Integer" // a number attribute
@@ -228,6 +231,50 @@ public class MapPanelTest {
                 // ToDo поправить бред
                 frame.resize(999, 600);
                 frame.resize(1000, 600);
+            }
+        });
+
+        button2.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(geoServerMapPanel != null)
+                {
+                    // Координаты точки
+                    SimpleFeatureTypeBuilder ftbPoint = new SimpleFeatureTypeBuilder();
+                    ftbPoint.setName("BS");
+                    ftbPoint.add("geom", Geometry.class);
+                    SimpleFeatureType typePoint = ftbPoint.buildFeatureType();
+
+                    java.util.List<Coordinate> coordinateBS = new ArrayList<>();
+                    coordinateBS.add((new Coordinate(44, 57)));
+                    coordinateBS.add((new Coordinate(44, 37)));
+
+                    GeometryFactory gf = new GeometryFactory();
+                    MemoryDataStore ds2 = new MemoryDataStore();
+                    java.util.List<SimpleFeature> simpleFeatureList = new ArrayList<>();
+                    for(Coordinate coord:coordinateBS)
+                    {
+                        com.vividsolutions.jts.geom.Point point = gf.createPoint(coord);
+                        SimpleFeature sfp = SimpleFeatureBuilder.build(typePoint, new Object[] { point }, null);
+                        simpleFeatureList.add(sfp);
+                    }
+                    SimpleFeature[] simpleFeatures = new SimpleFeature[simpleFeatureList.size()];
+                    simpleFeatureList.toArray(simpleFeatures);
+                    ds2.addFeatures(simpleFeatures);
+                    FeatureSource fs2 = null;
+                    try {
+                        fs2 = ds2.getFeatureSource("BS");
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+
+                    Style pointStyle = SLD.createPointStyle("Circle", Color.BLUE, Color.BLUE, 0.7f, 5);
+                    Layer layerPointBS = new FeatureLayer(fs2, pointStyle);
+
+                    ((JMapPane) geoServerMapPanel.getMapPane()).getMapContent().addLayer(layerPointBS);
+                }
+
             }
         });
 

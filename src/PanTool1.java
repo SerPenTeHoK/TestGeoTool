@@ -338,6 +338,7 @@ public class PanTool1 extends CursorTool {
                     e.printStackTrace();
                 }
 // ЧТО ЭТО?
+                /*
                 try {
                     MemoryDataStore mds3 = (MemoryDataStore) source.getDataStore();
                     FeatureSource fs3 = null;
@@ -351,6 +352,7 @@ public class PanTool1 extends CursorTool {
                 {
                     e.printStackTrace();
                 }
+                */
 
 
                 // REG_PO отбор регионов по полигону
